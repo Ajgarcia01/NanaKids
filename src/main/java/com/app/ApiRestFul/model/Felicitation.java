@@ -3,9 +3,12 @@ package com.app.ApiRestFul.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.mysql.cj.jdbc.Blob;
 
@@ -17,15 +20,20 @@ public class Felicitation implements Serializable {
 	@Column(name = "id")
 	private Long id;
 	@Column(name = "Type")
-	private boolean Type;
+	private int Type;
+	@Column(name = "Estate")
+	private boolean Estate;
 	@Column(name = "Image")
 	private Blob image;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_kid")
+	private Kid kid;
 
 	public Felicitation() {
 
 	}
 
-	public Felicitation(Long id, boolean type, Blob image) {
+	public Felicitation(Long id, int type, Blob image) {
 		this.id = id;
 		this.Type = type;
 		this.image = image;
@@ -39,11 +47,11 @@ public class Felicitation implements Serializable {
 		this.id = id;
 	}
 
-	public boolean isType() {
+	public int isType() {
 		return Type;
 	}
 
-	public void setType(boolean type) {
+	public void setType(int type) {
 		Type = type;
 	}
 
@@ -55,4 +63,17 @@ public class Felicitation implements Serializable {
 		this.image = image;
 	}
 
+	public boolean isEstate() {
+		return Estate;
+	}
+
+	public void setEstate(boolean estate) {
+		Estate = estate;
+	}
+
+	@Override
+	public String toString() {
+		return "Felicitation [id=" + id + ", Type=" + Type + ", Estate=" + Estate + ", image=" + image + ", kid=" + kid
+				+ "]";
+	}
 }

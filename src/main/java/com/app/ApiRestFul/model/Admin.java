@@ -1,43 +1,33 @@
 package com.app.ApiRestFul.model;
 
-import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-public class Admin implements Serializable {
+public class Admin {
 
-	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
 	@Column(name = "user")
 	private String user;
 	@Column(name = "password")
 	private String password;
 	@Column(name = "email")
 	private String email;
+	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Client> clients;
 
 	public Admin() {
 
 	}
 
 	public Admin(Long id, String user, String password, String email) {
-		this.id = id;
 		this.user = user;
 		this.password = password;
 		this.email = email;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getUser() {
@@ -63,4 +53,11 @@ public class Admin implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "Admin [user=" + user + ", password=" + password + ", email=" + email + ", clients=" + clients + "]";
+	}
+	
+	
 }
