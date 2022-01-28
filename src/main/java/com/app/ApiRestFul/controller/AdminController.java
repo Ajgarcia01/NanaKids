@@ -11,4 +11,6 @@ import com.app.ApiRestFul.services.AdminService;
 public class AdminController {
 	@Autowired
 	AdminService service;
+	
+	//antes de tocar esto tener el servicio hecho
 }

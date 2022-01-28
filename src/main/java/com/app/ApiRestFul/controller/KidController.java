@@ -11,4 +11,5 @@ import com.app.ApiRestFul.services.KidService;
 public class KidController {
 	@Autowired
 	KidService service;
+	//antes de tocar esto tener el servicio hecho
 }

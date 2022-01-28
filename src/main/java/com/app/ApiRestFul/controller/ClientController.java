@@ -12,5 +12,5 @@ public class ClientController {
 
 	@Autowired
 	ClientService service;
-
+	//antes de tocar esto tener el servicio hecho
 }
