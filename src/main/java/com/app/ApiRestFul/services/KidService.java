@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.repository.KidRepository;
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 
+@Service
 public class KidService {
 	@Autowired
 	KidRepository repository;

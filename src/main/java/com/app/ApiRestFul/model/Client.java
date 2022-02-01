@@ -4,12 +4,16 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="client")
 public class Client {
 
 	//private static final long serialVersionUID = 1L;
