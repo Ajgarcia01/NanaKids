@@ -3,11 +3,13 @@ package com.app.ApiRestFul.services;
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 import com.app.ApiRestFul.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.app.ApiRestFul.repository.ClientRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ClientService {
 
     @Autowired

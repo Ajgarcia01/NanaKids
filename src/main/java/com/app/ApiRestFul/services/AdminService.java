@@ -3,11 +3,13 @@ package com.app.ApiRestFul.services;
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 import com.app.ApiRestFul.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.app.ApiRestFul.repository.AdminRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AdminService {
 	@Autowired
 	AdminRepository repository;
