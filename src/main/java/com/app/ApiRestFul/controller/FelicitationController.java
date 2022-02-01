@@ -61,12 +61,14 @@ public class FelicitationController {
 	
 	//-----------------------------------POST
 	
+	/*
 	 @PostMapping
-	    public ResponseEntity<Felicitation> createOrUpdateItem(@Validated @RequestBody Felicitation felicitation) throws RecordNotFoundException {
+	    public ResponseEntity<Felicitation> createOrUpdateItem( @RequestBody Felicitation felicitation) throws RecordNotFoundException {
 		 Felicitation updated = service.createOrUpdate(felicitation);
 	        return new ResponseEntity<Felicitation>(updated, new HttpHeaders(), HttpStatus.OK);
 	}
 	 
+	 */
 	 
 	 //CAMBIAR ESTADO DE LA LISTA A ENVIADO
 	 /*DEVOLVIENDO UNA LISTA 
