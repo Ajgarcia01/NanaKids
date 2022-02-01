@@ -17,7 +17,7 @@ import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.services.KidService;
 
 @RestController
-@RequestMapping("/Kid")
+@RequestMapping("/kid")
 public class KidController {
 	@Autowired
 	KidService service;

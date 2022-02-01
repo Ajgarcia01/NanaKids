@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/Client")
+@RequestMapping("/client")
 public class ClientController {
 
 	@Autowired

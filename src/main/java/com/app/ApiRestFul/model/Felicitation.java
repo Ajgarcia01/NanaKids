@@ -3,15 +3,19 @@ package com.app.ApiRestFul.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.mysql.cj.jdbc.Blob;
 
+@Entity
+@Table(name = "felicitation")
 public class Felicitation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,7 +28,7 @@ public class Felicitation implements Serializable {
 	@Column(name = "Estate")
 	private boolean Estate;
 	@Column(name = "Image")
-	private Blob image;
+	private String image;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_kid")
 	private Kid kid;
@@ -33,7 +37,7 @@ public class Felicitation implements Serializable {
 
 	}
 
-	public Felicitation(Long id, int type, Blob image) {
+	public Felicitation(Long id, int type, String image) {
 		this.id = id;
 		this.Type = type;
 		this.image = image;
@@ -55,11 +59,11 @@ public class Felicitation implements Serializable {
 		Type = type;
 	}
 
-	public Blob getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

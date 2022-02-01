@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.ApiRestFul.services.FelicitationService;
 
 @RestController
-@RequestMapping("/Felicitation")
+@RequestMapping("/felicitation")
 public class FelicitationController {
 
 	@Autowired

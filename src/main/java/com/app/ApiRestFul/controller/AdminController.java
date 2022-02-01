@@ -19,18 +19,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/Admin")
+@RequestMapping("/admin")
 public class AdminController {
 	@Autowired
 	AdminService service;
 	//antes de tocar esto tener el servicio hecho
         
-        @GetMapping
-        public ResponseEntity<List<Admin>> getAllAdmin(){
-            List<Admin> list=service.getAllAdmin();
-            return new ResponseEntity<List<Admin>>(list,new HttpHeaders(),HttpStatus.OK);
-        }
-        
+	
         @GetMapping("/{id}")
         public ResponseEntity<Admin> getAdminById(@PathVariable("id") String id) 
                 throws RecordNotFoundException{

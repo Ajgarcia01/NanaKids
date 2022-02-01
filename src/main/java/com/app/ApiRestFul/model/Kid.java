@@ -6,20 +6,26 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
-
+@Entity
+@Table(name = "kid")
 public class Kid implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -30,8 +36,10 @@ public class Kid implements Serializable {
 	private Date BirthDate;
 	@Column(name = "Gender")
 	private boolean Gender;
-	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Client> clients; //serian los padres
+	//@JsonIgnoreProperties(value = {"kid"}, allowSetters = true)
+	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name="id_kid"), inverseJoinColumns = @JoinColumn(name="id_client"))
+	@ManyToMany(cascade = {CascadeType.MERGE})
+	private List<Client> client; //serian los padres
 	@OneToMany(mappedBy = "kid", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Felicitation> felicitations;
 
@@ -80,7 +88,6 @@ public class Kid implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Kid [id=" + id + ", Name=" + Name + ", BirthDate=" + BirthDate + ", Gender=" + Gender + ", clients="
-				+ clients + ", felicitations=" + felicitations + "]";
+		return "Kid [id=" + id + ", Name=" + Name + ", BirthDate=" + BirthDate + ", Gender=" + Gender  + ", felicitations=" + felicitations + "]";
 	}
 }

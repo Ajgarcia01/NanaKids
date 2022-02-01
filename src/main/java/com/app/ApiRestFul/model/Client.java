@@ -3,13 +3,21 @@ package com.app.ApiRestFul.model;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@Table(name = "client")
 public class Client {
 
 	//private static final long serialVersionUID = 1L;
@@ -27,8 +35,9 @@ public class Client {
 	private int Phone;
 	@Column(name = "Email")
 	private String Email;
-	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Kid> kids;
+	//@JsonIgnoreProperties(value = {"client"}, allowSetters = true)
+	@ManyToMany(mappedBy = "client", cascade = CascadeType.MERGE)
+	private List<Kid> kid;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_admin")
 	private Admin admin;
@@ -98,7 +107,7 @@ public class Client {
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", type=" + type + ", Name=" + Name + ", Surname=" + Surname + ", Phone=" + Phone
-				+ ", Email=" + Email + ", kids=" + kids + ", admin=" + admin + "]";
+				+ ", Email=" + Email +", admin=" + admin + "]";
 	}
 	
 	
