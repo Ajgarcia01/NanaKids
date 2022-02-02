@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mysql.cj.jdbc.Blob;
 
 @Entity
@@ -29,6 +30,7 @@ public class Felicitation implements Serializable {
 	private boolean Estate;
 	@Column(name = "Image")
 	private String image;
+	@JsonIgnoreProperties(value = {"felicitations"}, allowSetters = true)
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_kid")
 	private Kid kid;
@@ -37,10 +39,11 @@ public class Felicitation implements Serializable {
 
 	}
 
-	public Felicitation(Long id, int type, String image) {
+	public Felicitation(Long id, int type, String image,Kid kid) {
 		this.id = id;
 		this.Type = type;
 		this.image = image;
+		this.kid=kid;
 	}
 
 	public Long getId() {
@@ -73,6 +76,20 @@ public class Felicitation implements Serializable {
 
 	public void setEstate(boolean estate) {
 		Estate = estate;
+	}
+	
+	
+
+	public Kid getKid() {
+		return kid;
+	}
+
+	public void setKid(Kid kid) {
+		this.kid = kid;
+	}
+
+	public int getType() {
+		return Type;
 	}
 
 	@Override

@@ -35,10 +35,11 @@ public class Client {
 	private int Phone;
 	@Column(name = "Email")
 	private String Email;
-	//@JsonIgnoreProperties(value = {"client"}, allowSetters = true)
+	@JsonIgnoreProperties(value = {"client"}, allowSetters = true)
 	@ManyToMany(mappedBy = "client", cascade = CascadeType.MERGE)
 	private List<Kid> kid;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = {"clients"}, allowSetters = true)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "user_admin")
 	private Admin admin;
 	
@@ -47,13 +48,15 @@ public class Client {
 	
 	}
 
-	public Client(String id, boolean type, String name, String surname, int phone, String email) {
+	public Client(String id, boolean type, String name, String surname, int phone, String email,Admin user_admin,List<Kid> kid) {
 		this.id = id;
 		this.type = type;
 		this.Name = name;
 		this.Surname = surname;
 		this.Phone = phone;
 		this.Email = email;
+		this.admin= user_admin;
+		this.kid=kid;
 	}
 
 	public String getId() {
@@ -102,6 +105,25 @@ public class Client {
 
 	public void setEmail(String email) {
 		Email = email;
+	}
+	
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin user_admin) {
+		this.admin = user_admin;
+	}
+	
+	
+	
+	public List<Kid> getKid() {
+		return kid;
+	}
+
+	public void setKid(List<Kid> kid) {
+		this.kid = kid;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.ApiRestFul.model.Client;
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.repository.KidRepository;
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
@@ -31,8 +32,18 @@ public class KidService {
 	 * 
 	 */
 	
+	public Kid createClient(Kid kid) {
+        kid = repository.save(kid);
+        return kid;
+    }
 	
-	public Kid createOrUpdate(Kid kid) {
+	
+	/*
+	 * 
+	 * 
+	 */
+	
+	public Kid Update(Kid kid) {
 		if (kid.getId() != null && kid.getId() > 0) {
 			Optional<Kid> n = repository.findById(kid.getId());
 			if (n.isPresent()) { // UPDATE

@@ -37,10 +37,11 @@ public class Kid implements Serializable {
 	private Date BirthDate;
 	@Column(name = "Gender")
 	private boolean Gender;
-	//@JsonIgnoreProperties(value = {"kid"}, allowSetters = true)
+	@JsonIgnoreProperties(value = {"kid"}, allowSetters = true)
 	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name="id_kid"), inverseJoinColumns = @JoinColumn(name="id_client"))
 	@ManyToMany(cascade = {CascadeType.MERGE})
 	private List<Client> client; //serian los padres
+	@JsonIgnoreProperties(value = {"kid"}, allowSetters = true)
 	@OneToMany(mappedBy = "kid", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Felicitation> felicitations;
 
@@ -48,11 +49,13 @@ public class Kid implements Serializable {
 
 	}
 
-	public Kid(Long id, String name, Date birthDate, boolean gender) {
+	public Kid(Long id, String name, Date birthDate, boolean gender,List<Client> client,List<Felicitation> felicitations) {
 		this.id = id;
 		this.Name = name;
 		this.BirthDate = birthDate;
 		this.Gender = gender;
+		this.felicitations=felicitations;
+		this.client=client;
 	}
 
 	public Long getId() {
@@ -85,6 +88,24 @@ public class Kid implements Serializable {
 
 	public void setGender(boolean gender) {
 		Gender = gender;
+	}
+	
+	
+
+	public List<Client> getClient() {
+		return client;
+	}
+
+	public void setClient(List<Client> client) {
+		this.client = client;
+	}
+
+	public List<Felicitation> getFelicitations() {
+		return felicitations;
+	}
+
+	public void setFelicitations(List<Felicitation> felicitations) {
+		this.felicitations = felicitations;
 	}
 
 	@Override

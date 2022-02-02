@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "admin")
@@ -21,7 +25,8 @@ public class Admin {
 	private String password;
 	@Column(name = "email")
 	private String email;
-	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties(value = {"admin"}, allowSetters = true)
+	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
 	private List<Client> clients;
 
 	public Admin() {
@@ -56,6 +61,16 @@ public class Admin {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
 	}
 
 	@Override
