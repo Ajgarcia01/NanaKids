@@ -1,15 +1,12 @@
 package com.app.ApiRestFul.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -48,14 +45,14 @@ public class Client {
 	
 	}
 
-	public Client(String id, boolean type, String name, String surname, int phone, String email,Admin user_admin,List<Kid> kid) {
+	public Client(String id, boolean type, String name, String surname, int phone, String email,List<Kid> kid) {
 		this.id = id;
 		this.type = type;
 		this.Name = name;
 		this.Surname = surname;
 		this.Phone = phone;
 		this.Email = email;
-		this.admin= user_admin;
+		//this.admin= user_admin;
 		this.kid=kid;
 	}
 
@@ -106,17 +103,6 @@ public class Client {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	
-
-	public Admin getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admin user_admin) {
-		this.admin = user_admin;
-	}
-	
-	
 	
 	public List<Kid> getKid() {
 		return kid;

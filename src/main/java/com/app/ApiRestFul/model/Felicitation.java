@@ -2,9 +2,9 @@ package com.app.ApiRestFul.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.mysql.cj.jdbc.Blob;
 
 @Entity
 @Table(name = "felicitation")
@@ -31,7 +30,7 @@ public class Felicitation implements Serializable {
 	@Column(name = "Image")
 	private String image;
 	@JsonIgnoreProperties(value = {"felicitations"}, allowSetters = true)
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_kid")
 	private Kid kid;
 

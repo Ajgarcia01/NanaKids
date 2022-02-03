@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -42,20 +39,19 @@ public class Kid implements Serializable {
 	@ManyToMany(cascade = {CascadeType.MERGE})
 	private List<Client> client; //serian los padres
 	@JsonIgnoreProperties(value = {"kid"}, allowSetters = true)
-	@OneToMany(mappedBy = "kid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "kid", cascade = CascadeType.ALL)
 	private List<Felicitation> felicitations;
 
 	public Kid() {
 
 	}
 
-	public Kid(Long id, String name, Date birthDate, boolean gender,List<Client> client,List<Felicitation> felicitations) {
+	public Kid(Long id, String name, Date birthDate, boolean gender,List<Felicitation> felicitations) {
 		this.id = id;
 		this.Name = name;
 		this.BirthDate = birthDate;
 		this.Gender = gender;
 		this.felicitations=felicitations;
-		this.client=client;
 	}
 
 	public Long getId() {
@@ -89,8 +85,6 @@ public class Kid implements Serializable {
 	public void setGender(boolean gender) {
 		Gender = gender;
 	}
-	
-	
 
 	public List<Client> getClient() {
 		return client;
