@@ -22,9 +22,14 @@ public class KidService {
 	 * 
 	 */
 	
-	public List<Kid> getAllKids() {
+	public List<Kid> getAllKids() throws NullPointerException {
 		List<Kid> result = repository.findAll();
-		return result;
+		if(!result.isEmpty()) {
+			return result;
+		}else {
+			throw new NullPointerException("Valor nulo");
+		}
+		
 	}
 	
 	
@@ -80,7 +85,7 @@ public class KidService {
 		if (kid.isPresent()) {
 			repository.deleteById(id);
 		} else {
-			 throw new RecordNotFoundException("Nota no existe", id);
+			 throw new RecordNotFoundException("Niño no existe", id);
 		}
 
 	}
@@ -90,13 +95,23 @@ public class KidService {
 	 * 
 	 */
 
-	public Kid getNotesById(Long id) {
-		Optional<Kid> result = repository.findById(id);
-		if (result.isPresent()) {
-			return result.get();
-		} else {
-			throw new RecordNotFoundException("El niño no existe", id);
+	public Kid getNotesById(Long id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
+		if(id!=null) {
+			try {
+				Optional<Kid> result = repository.findById(id);
+				if (result.isPresent()) {
+					return result.get();
+				} else {
+					throw new RecordNotFoundException("El niño no existe", id);
+				}
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException(e);
+			}
+		}else {
+			throw new NullPointerException("Valor nulo");
 		}
+
+		
 
 	}
 	
