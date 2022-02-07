@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.app.ApiRestFul.model.Client;
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.services.KidService;
 
@@ -26,9 +28,39 @@ public class KidController {
 	
 	@GetMapping
 	public ResponseEntity<List<Kid>> getAllKids(){
-		List<Kid> all= service.getAllKids();
+		try {
+			List<Kid> all= service.getAllKids();
+			return new ResponseEntity<List<Kid>>(all,new HttpHeaders(),HttpStatus.OK);
+		} catch (Exception e) {
+			List<Kid> all= service.getAllKids();
+			return new ResponseEntity<List<Kid>>(all,new HttpHeaders(),HttpStatus.OK);
+		}
+		
+		
+	}
+	
+	@GetMapping("/clients/{id}")
+	public ResponseEntity<List<Client>> getClientsByKid(@PathVariable("id") Long id){
+		if(id!=null && id > -1) {
+			try {
+				List<Client> all= service.getClientsByKid(id);
+				return new ResponseEntity<List<Client>>(all,new HttpHeaders(),HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<List<Client>>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+			}
+			
+		}else {
+			return new ResponseEntity<List<Client>>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	
+	@GetMapping("/search/{name}")
+	public ResponseEntity<List<Kid>> getKidByName(@PathVariable("name") String name){
+		List<Kid> all= service.getKidByName(name);
 		return new ResponseEntity<List<Kid>>(all,new HttpHeaders(),HttpStatus.OK);
 	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Kid> getKidById(@PathVariable("id") Long id){
 		Kid note = service.getNotesById(id);

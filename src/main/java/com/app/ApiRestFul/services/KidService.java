@@ -1,5 +1,6 @@
 package com.app.ApiRestFul.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,8 +95,26 @@ public class KidService {
 		if (result.isPresent()) {
 			return result.get();
 		} else {
-			throw new RecordNotFoundException("La nota no existe", id);
+			throw new RecordNotFoundException("El niño no existe", id);
 		}
 
 	}
+	
+	
+	public List<Client> getClientsByKid(Long id){
+		List<Client> result= repository.getClients(id);
+		return result;
+	}
+	
+	
+	public List<Kid> getKidByName(String title) {
+		List<Kid> list = repository.getByName(title);
+		
+		if(list.size() > 0) {
+			return list;
+		}else {
+			return new ArrayList<Kid>();
+		}
+	}
+	
 }

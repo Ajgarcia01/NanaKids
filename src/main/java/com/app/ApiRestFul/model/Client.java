@@ -45,14 +45,14 @@ public class Client {
 	
 	}
 
-	public Client(String id, boolean type, String name, String surname, int phone, String email,List<Kid> kid) {
+	public Client(String id, boolean type, String name, String surname, int phone, String email,Admin admin,List<Kid> kid) {
 		this.id = id;
 		this.type = type;
 		this.Name = name;
 		this.Surname = surname;
 		this.Phone = phone;
 		this.Email = email;
-		//this.admin= user_admin;
+		this.admin= admin;
 		this.kid=kid;
 	}
 
