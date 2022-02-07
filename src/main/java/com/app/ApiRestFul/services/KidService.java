@@ -116,11 +116,6 @@ public class KidService {
 	}
 	
 	
-	public List<Client> getClientsByKid(Long id){
-		List<Client> result= repository.getClients(id);
-		return result;
-	}
-	
 	
 	public List<Kid> getKidByName(String title) {
 		List<Kid> list = repository.getByName(title);

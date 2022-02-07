@@ -39,21 +39,6 @@ public class KidController {
 		
 	}
 	
-	@GetMapping("/clients/{id}")
-	public ResponseEntity<List<Client>> getClientsByKid(@PathVariable("id") Long id){
-		if(id!=null && id > -1) {
-			try {
-				List<Client> all= service.getClientsByKid(id);
-				return new ResponseEntity<List<Client>>(all,new HttpHeaders(),HttpStatus.OK);
-			} catch (Exception e) {
-				return new ResponseEntity<List<Client>>(new HttpHeaders(),HttpStatus.NOT_FOUND);
-			}
-			
-		}else {
-			return new ResponseEntity<List<Client>>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
-		}
-		
-	}
 	
 	@GetMapping("/search/{name}")
 	public ResponseEntity<List<Kid>> getKidByName(@PathVariable("name") String name){
@@ -69,14 +54,31 @@ public class KidController {
 	
 	@PostMapping
 	public ResponseEntity<Kid> createKid(@RequestBody Kid n){
-		Kid note = service.createClient(n);
-		return new ResponseEntity<Kid>(note,new HttpHeaders(),HttpStatus.OK);
+		if(n!=null && n.getId()>0) {
+			try {
+				Kid kid = service.createClient(n);
+				return new ResponseEntity<Kid>(kid,new HttpHeaders(),HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+			}
+		}else {
+			return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@PutMapping
 	public ResponseEntity<Kid> UpdateKid(@RequestBody Kid n){
-		Kid note = service.Update(n);
-		return new ResponseEntity<Kid>(note,new HttpHeaders(),HttpStatus.OK);
+		if(n!=null && n.getId()>0) {
+			try {
+				Kid kid = service.Update(n);
+				return new ResponseEntity<Kid>(kid,new HttpHeaders(),HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+			}
+		}else {
+			return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 	
 	
