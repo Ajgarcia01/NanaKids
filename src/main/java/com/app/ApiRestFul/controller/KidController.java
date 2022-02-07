@@ -1,5 +1,6 @@
 package com.app.ApiRestFul.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,77 +15,155 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.app.ApiRestFul.model.Client;
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.services.KidService;
+
+/*
+ * @author=Jesús García Luque 
+ */
 
 @RestController
 @RequestMapping("/kid")
 public class KidController {
 	@Autowired
 	KidService service;
-	//antes de tocar esto tener el servicio hecho
-	
+
+	/*
+	 * EndPoint que nos devuelve un HttpStatus.OK y todos los niños que existan en
+	 * la BBDD a través del servicio
+	 */
+
 	@GetMapping
-	public ResponseEntity<List<Kid>> getAllKids(){
+	public ResponseEntity<List<Kid>> getAllKids() {
 		try {
-			List<Kid> all= service.getAllKids();
-			return new ResponseEntity<List<Kid>>(all,new HttpHeaders(),HttpStatus.OK);
+			List<Kid> all = service.getAllKids();
+			return new ResponseEntity<List<Kid>>(all, new HttpHeaders(), HttpStatus.OK);
 		} catch (Exception e) {
-			List<Kid> all= service.getAllKids();
-			return new ResponseEntity<List<Kid>>(all,new HttpHeaders(),HttpStatus.OK);
+			List<Kid> all = service.getAllKids();
+			return new ResponseEntity<List<Kid>>(all, new HttpHeaders(), HttpStatus.OK);
 		}
-		
-		
 	}
-	
-	
+
+	/*
+	 * 
+	 * EndPoint que nos devuelve un HttpStatus.OK y todos los niños que coincidan con ese nombre
+	 * 
+	 * 
+	 * En caso de error nos devolveria unHttpStatus.NOT_FOUND o HttpStatus.BAD_REQUEST, en función de la petición
+	 * 
+	 */
+
 	@GetMapping("/search/{name}")
-	public ResponseEntity<List<Kid>> getKidByName(@PathVariable("name") String name){
-		List<Kid> all= service.getKidByName(name);
-		return new ResponseEntity<List<Kid>>(all,new HttpHeaders(),HttpStatus.OK);
+	public ResponseEntity<List<Kid>> getKidByName(@PathVariable("name") String name) {
+		if (name != null) {
+			try {
+				List<Kid> all = service.getKidByName(name);
+				return new ResponseEntity<List<Kid>>(all, new HttpHeaders(), HttpStatus.OK);
+			} catch (Exception e) {
+				List<Kid> all = new ArrayList<Kid>();
+				return new ResponseEntity<List<Kid>>(all,new HttpHeaders(), HttpStatus.NOT_FOUND);
+			}
+		} else {
+			List<Kid> all = new ArrayList<Kid>();
+			return new ResponseEntity<List<Kid>>(all,new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+
 	}
-	
+
+	/*
+	 * 
+	 * EndPoint que nos devuelve un HttpStatus.OK y todos el niño que coincidan con ese id
+	 * 
+	 * 
+	 * En caso de error nos devolveria unHttpStatus.NOT_FOUND o HttpStatus.BAD_REQUEST, en función de la petición
+	 * 
+	 */
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Kid> getKidById(@PathVariable("id") Long id){
-		Kid note = service.getNotesById(id);
-		return new ResponseEntity<Kid>(note,new HttpHeaders(),HttpStatus.OK);
+	public ResponseEntity<Kid> getKidById(@PathVariable("id") Long id) {
+
+		if (id != null && id > -1) {
+			try {
+				Kid kid = service.getKidById(id);
+				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.NOT_FOUND);
+			}
+		} else {
+			return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+
 	}
-	
+
+	/*
+	 * 
+	 * EndPoint que nos devuelve un HttpStatus.OK y un nuevo niño creado en la BBDD
+	 * 
+	 * 
+	 * En caso de error nos devolveria unHttpStatus.NOT_FOUND o HttpStatus.BAD_REQUEST, en función de la petición
+	 * 
+	 */
+
 	@PostMapping
-	public ResponseEntity<Kid> createKid(@RequestBody Kid n){
-		if(n!=null && n.getId()>0) {
+	public ResponseEntity<Kid> createKid(@RequestBody Kid n) {
+		if (n != null && n.getId() > 0) {
 			try {
 				Kid kid = service.createClient(n);
-				return new ResponseEntity<Kid>(kid,new HttpHeaders(),HttpStatus.OK);
+				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
 			} catch (Exception e) {
-				return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+				return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.NOT_FOUND);
 			}
-		}else {
-			return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
+	/*
+	 * 
+	 * EndPoint que nos devuelve un HttpStatus.OK y un niño actualizado en la BBDD
+	 * 
+	 * 
+	 * En caso de error nos devolveria unHttpStatus.NOT_FOUND o HttpStatus.BAD_REQUEST, en función de la petición
+	 * 
+	 */
+
 	@PutMapping
-	public ResponseEntity<Kid> UpdateKid(@RequestBody Kid n){
-		if(n!=null && n.getId()>0) {
+	public ResponseEntity<Kid> UpdateKid(@RequestBody Kid n) {
+		if (n != null && n.getId() > 0) {
 			try {
 				Kid kid = service.Update(n);
-				return new ResponseEntity<Kid>(kid,new HttpHeaders(),HttpStatus.OK);
+				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
 			} catch (Exception e) {
-				return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.NOT_FOUND);
+				return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.NOT_FOUND);
 			}
-		}else {
-			return new ResponseEntity<Kid>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
-	
-	
+
+	/*
+	 * 
+	 * EndPoint que nos devuelve un HttpStatus.OK y un niño eliminado en la BBDD
+	 * 
+	 * 
+	 * En caso de error nos devolveria unHttpStatus.NOT_FOUND o HttpStatus.BAD_REQUEST, en función de la petición
+	 * 
+	 */
+
 	@DeleteMapping("/{id}")
-	public HttpStatus deleteNote(@PathVariable("id") Long id){
-		service.deleteKidById(id);
-		return HttpStatus.OK;
+	public HttpStatus deleteKid(@PathVariable("id") Long id) {
+		if (id != null && id > -1) {
+			try {
+				service.deleteKidById(id);
+				return HttpStatus.OK;
+			} catch (Exception e) {
+
+				return HttpStatus.NOT_FOUND;
+			}
+		} else {
+			return HttpStatus.BAD_REQUEST;
+		}
+
 	}
 }
