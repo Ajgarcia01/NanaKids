@@ -106,7 +106,7 @@ public class KidController {
 
 	@PostMapping
 	public ResponseEntity<Kid> createKid(@RequestBody Kid n) {
-		if (n != null && n.getId() > 0) {
+		if (n != null) {
 			try {
 				Kid kid = service.createClient(n);
 				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);

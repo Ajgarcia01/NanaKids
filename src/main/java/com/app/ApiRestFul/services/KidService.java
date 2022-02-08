@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.repository.KidRepository;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 
 /*
@@ -77,6 +78,8 @@ public class KidService {
 				newKid.setBirthDate(kid.getBirthDate());
 				newKid.setGender(kid.isGender());
 				newKid.setName(kid.getName());
+				newKid.setClient(kid.getClient());
+				newKid.setFelicitations(kid.getFelicitations());
 				newKid = repository.save(newKid);
 				return newKid;
 			} else { // INSERT
@@ -123,7 +126,7 @@ public class KidService {
 	 * 
 	 */
 
-	public Kid getKidById(Long id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
+	public Kid getKidById(Long id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException, InvalidFormatException {
 		if(id!=null) {
 			try {
 				Optional<Kid> result = repository.findById(id);
@@ -133,7 +136,7 @@ public class KidService {
 					throw new RecordNotFoundException("El niño no existe", id);
 				}
 			} catch (IllegalArgumentException e) {
-				throw new IllegalArgumentException(e);
+				throw new InvalidFormatException("Mete un Long", id, Kid.class);
 			}
 		}else {
 			throw new NullPointerException("Valor nulo");
