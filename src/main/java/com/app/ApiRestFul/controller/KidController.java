@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.services.KidService;
 
@@ -87,10 +89,10 @@ public class KidController {
 				Kid kid = service.getKidById(id);
 				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
 			} catch (Exception e) {
-				return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.NOT_FOUND);
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El niño con id: "+id+"no se ha encontrado", e);
 			}
 		} else {
-			return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
 		}
 
 	}
@@ -105,16 +107,16 @@ public class KidController {
 	 */
 
 	@PostMapping
-	public ResponseEntity<Kid> createKid(@RequestBody Kid n) {
+	public ResponseEntity<Kid> createKid(@RequestBody Kid n)throws ResponseStatusException {
 		if (n != null) {
 			try {
-				Kid kid = service.createClient(n);
+				Kid kid = service.createKid(n);
 				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
 			} catch (Exception e) {
-				return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.NOT_FOUND);
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El niño no ha sido guardado correctamente", e);
 			}
 		} else {
-			return new ResponseEntity<Kid>(new Kid(),new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
 		}
 	}
 
