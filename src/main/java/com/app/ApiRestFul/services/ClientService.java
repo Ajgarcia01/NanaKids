@@ -58,8 +58,9 @@ public class ClientService {
                 newClient.setName(entity.getName());
                 newClient.setPhone(entity.getPhone());
                 newClient.setSurname(entity.getSurname());
+                newClient.setAdmin(entity.getAdmin());
                 newClient.setType(entity.isType());
-
+                newClient=repository.save(newClient);
                 return newClient;
             } else {
                 throw new RecordNotFoundException("Client not found", entity.getId());

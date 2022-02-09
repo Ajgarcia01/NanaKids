@@ -71,12 +71,12 @@ public class ClientController {
 
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Client> UpdateClient(@RequestBody Client client)
             throws RecordNotFoundException {
-        if (client != null) {
+        if (client != null && !client.getId().isEmpty()) {
             try {
-                Client newClient = service.createClient(client);
+                Client newClient = service.UpdateClient(client);
                 return new ResponseEntity<Client>(newClient, new HttpHeaders(), HttpStatus.OK);
 
             } catch (Exception e) {

@@ -17,43 +17,43 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "client")
 public class Client {
 
-	//private static final long serialVersionUID = 1L;
-	
+	// private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "id")
 	private String id;
 	@Column(name = "Type")
-	private boolean type; //true padre, false madre
+	private boolean type; // true padre, false madre
 	@Column(name = "Name")
 	private String Name;
 	@Column(name = "Surname")
 	private String Surname;
-	@Column(name = "Phone",length = 9)
+	@Column(name = "Phone", length = 9)
 	private int Phone;
 	@Column(name = "Email")
 	private String Email;
-	@JsonIgnoreProperties(value = {"client"}, allowSetters = true)
+	@JsonIgnoreProperties(value = { "client" }, allowSetters = true)
 	@ManyToMany(mappedBy = "client", cascade = CascadeType.MERGE)
 	private List<Kid> kid;
-	@JsonIgnoreProperties(value = {"clients"}, allowSetters = true)
+	@JsonIgnoreProperties(value = { "clients" }, allowSetters = true)
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "user_admin")
 	private Admin admin;
-	
-	
-	public Client(){
-	
+
+	public Client() {
+
 	}
 
-	public Client(String id, boolean type, String name, String surname, int phone, String email,Admin admin,List<Kid> kid) {
+	public Client(String id, boolean type, String name, String surname, int phone, String email, Admin admin,
+			List<Kid> kid) {
 		this.id = id;
 		this.type = type;
 		this.Name = name;
 		this.Surname = surname;
 		this.Phone = phone;
 		this.Email = email;
-		this.admin= admin;
-		this.kid=kid;
+		this.admin = admin;
+		this.kid = kid;
 	}
 
 	public String getId() {
@@ -103,7 +103,7 @@ public class Client {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	
+
 	public List<Kid> getKid() {
 		return kid;
 	}
@@ -112,11 +112,18 @@ public class Client {
 		this.kid = kid;
 	}
 
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", type=" + type + ", Name=" + Name + ", Surname=" + Surname + ", Phone=" + Phone
-				+ ", Email=" + Email +", admin=" + admin + "]";
+				+ ", Email=" + Email + ", admin=" + admin + "]";
 	}
-	
-	
+
 }
