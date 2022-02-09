@@ -15,19 +15,32 @@ public class ClientService {
     @Autowired
     ClientRepository repository;
 
-    public List<Client> getAllClient() {
+    public List<Client> getAllClient() throws NullPointerException {
         List<Client> clientes = repository.findAll();
-        return clientes;
+        if (!clientes.isEmpty()) {
+            return clientes;
+        } else {
+            throw new NullPointerException("Valor nulo");
+        }
+
     }
 
-    public Client getClientById(String id) throws RecordNotFoundException {
-        Optional<Client> client = repository.findById(id);
-
-        if (client.isPresent()) {
-            return client.get();
+    public Client getClientById(String id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
+        if (id != null) {
+            try {
+                Optional<Client> client = repository.findById(id);
+                if (client.isPresent()) {
+                    return client.get();
+                } else {
+                    throw new RecordNotFoundException("No client record exist for given id", id);
+                }
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(e);
+            }
         } else {
-            throw new RecordNotFoundException("No client record exist for given id", id);
+            throw new NullPointerException("Valor nulo");
         }
+
     }
 
     public Client createClient(Client cliente) {
@@ -57,12 +70,22 @@ public class ClientService {
 
     }
 
-    public void deleteClient(String id) throws RecordNotFoundException {
-        Optional<Client> cliente = repository.findById(id);
-        if (cliente.isPresent()) {
-            repository.deleteById(id);
+    public void deleteClient(String id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
+        if (id != null) {
+            try {
+                Optional<Client> cliente = repository.findById(id);
+                if (cliente.isPresent()) {
+                    repository.deleteById(id);
+                } else {
+                    throw new RecordNotFoundException("No client record exist for given id", id);
+                }
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(e);
+            }
+
         } else {
-            throw new RecordNotFoundException("No client record exist for given id", id);
+            throw new NullPointerException("Valor nulo");
         }
+
     }
 }
