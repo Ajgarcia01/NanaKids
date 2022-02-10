@@ -1,6 +1,7 @@
 package com.app.ApiRestFul.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,7 @@ public class FelicitationService {
 	@Autowired
 	FelicitationRepository repository;
 
-	// OBTENER TODAS LAS FELICITACIOS
+	// OBTENER TODAS LAS FELICITACIONES
 	public List<Felicitation> getAllFelicitations() {
 		List<Felicitation> result = repository.findAll();
 		return result;
@@ -27,27 +28,27 @@ public class FelicitationService {
 		Optional<Felicitation> result = repository.findById(id);
 		if (result.isPresent()) {
 			return result.get();
-
 		} else {
 			throw new RecordNotFoundException("", id);
 		}
 
 	}
-
-	// CREAR O ACTUALIZAR FELICITACION
-	public Felicitation createOrUpdate(Felicitation felicitation) {
+	
+	// ACTUALIZAR UNA FELICITACION Y SI NO EXISTE LA CREA	
+	public Felicitation Update(Felicitation felicitation) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (felicitation.getId() != null && felicitation.getId() > 0) {
-			Optional<Felicitation> f = repository.findById(felicitation.getId());
-
-			if (f.isPresent()) {
-
-				// Actualizar
-
-				Felicitation newFelicitation = f.get();
+			Optional<Felicitation> n = repository.findById(felicitation.getId());
+			if (n.isPresent()) { // UPDATE
+				Felicitation newFelicitation = n.get();
 				newFelicitation.setId(felicitation.getId());
+				newFelicitation.setType(felicitation.getType());
+				newFelicitation.setEstate(felicitation.isEstate());
+				newFelicitation.setDateSend(felicitation.getDateSend());
 				newFelicitation.setImage(felicitation.getImage());
+				newFelicitation.setKid(felicitation.getKid());
+				newFelicitation = repository.save(newFelicitation);
 				return newFelicitation;
-			} else {
+			} else { // INSERT
 				felicitation.setId(null);
 				felicitation = repository.save(felicitation);
 				return felicitation;
@@ -57,7 +58,15 @@ public class FelicitationService {
 			return felicitation;
 		}
 	}
+	
+	//OBTENER LISTA DE FELICITACIONES POR TIPO
+	
+	public List<Felicitation> listTypeFelicitation(int TypeFelicitation) {
+		List<Felicitation> listFelicitation = repository.getByType(TypeFelicitation);
+		return listFelicitation;
+	}
 
+	
 	// BORRAR FELICITACION POR ID
 	public void deleteFelicitation(Long id) {
 
@@ -68,72 +77,11 @@ public class FelicitationService {
 			// NOTA BORRADA POR ID
 		}
 	}
-	/*
-	 * public int numberFelicitation() { List<Felicitation> result =
-	 * repository.findAll(); int number = result.size(); return number;
-	 * 
-	 * }
-	 */
-	// OBTENER NUMERO DE FELICITACIONES
-
+	
+	// OBTENER NUMERO DE FELICITACIONES TOTALES
 	public Long numberFelicitations() {
 		Long number = repository.count();
 		return number;
-
-	}
-	// CAMBIAR ESTADO DE FELICITACION
-	// DEVUELVE TRUE SI TODAS CAMBIAN SU ESTADO A ENVIADO
-	/*
-	 * public boolean changeStatusFelicitation(List<Felicitation> listFelicitation)
-	 * {
-	 * 
-	 * Felicitation x; boolean result = false;
-	 * 
-	 * if (listFelicitation != null && listFelicitation.size() > 0) { for(int
-	 * i=0;i<listFelicitation.size();i++) {
-	 * 
-	 * x = listFelicitation.get(i); if(!x.isEstate()) { x.setEstate(true); }
-	 * 
-	 * } result = true;
-	 * 
-	 * } return result; }
-	 */
-	/*
-	 * //????DUDA????? public List<Felicitation>
-	 * changeStatusFelicitation(List<Felicitation> listFelicitation) {
-	 * 
-	 * 
-	 * Felicitation x; boolean status = true;
-	 * 
-	 * if (listFelicitation != null && listFelicitation.size() > 0) {
-	 * 
-	 * for(int i=0;i<listFelicitation.size();i++) { x = listFelicitation.get(i);
-	 * if(!x.isEstate()) { x = repository.updateStatus(status, x.getId()); } }
-	 * 
-	 * } List<Felicitation> ls = repository.findAll(); return ls;
-	 * 
-	 * }
-	 */
-
-	//DEVUELVE UN HTTPSTATUS
-	public void changeStatusFelicitation(List<Felicitation> listFelicitation) {
-		Felicitation x;
-		boolean status = true;
-		if (listFelicitation != null && listFelicitation.size() > 0) {
-
-			for (int i = 0; i < listFelicitation.size(); i++) {
-				x = listFelicitation.get(i);
-				if (!x.isEstate()) {
-					x = repository.updateStatus(status, x.getId());
-				}
-			}
-
-		}
-	}
-
-	public List<Felicitation> listTypeFelicitation(int TypeFelicitation) {
-		List<Felicitation> listFelicitation = repository.getByType(TypeFelicitation);
-		return listFelicitation;
 	}
 
 }

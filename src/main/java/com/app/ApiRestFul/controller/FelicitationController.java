@@ -1,5 +1,6 @@
 package com.app.ApiRestFul.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,19 +36,13 @@ public class FelicitationController {
 		return new ResponseEntity<List<Felicitation>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 	//Get felicitation by ID
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Felicitation> getItemById(@PathVariable("id") Long id) throws RecordNotFoundException {
 		
 		Felicitation entity = service.getFelicitationById(id);
 
 		return new ResponseEntity<Felicitation>(entity, new HttpHeaders(), HttpStatus.OK);
-	}
-	
-	//Get count felicitations
-	@GetMapping("/count/")
-	public Long numberFelicitations() {
-		Long result = service.numberFelicitations();
-		return result;
 	}
 	
 	//Get ListFelicitation by type
@@ -57,40 +52,14 @@ public class FelicitationController {
 		return new ResponseEntity<List<Felicitation>>(list , new HttpHeaders() , HttpStatus.OK);
 	}
 	
-	//Get felicitation by id
+	//OBTENER EL NUMERO DE FELICITACIONES TOTALES
 	
-	//-----------------------------------POST
-	
-	/*
-	 @PostMapping
-	    public ResponseEntity<Felicitation> createOrUpdateItem( @RequestBody Felicitation felicitation) throws RecordNotFoundException {
-		 Felicitation updated = service.createOrUpdate(felicitation);
-	        return new ResponseEntity<Felicitation>(updated, new HttpHeaders(), HttpStatus.OK);
+	@GetMapping("/count")
+	public ResponseEntity<Long> getCount(){
+		Long count = service.numberFelicitations();
+		return new ResponseEntity<Long>(count , new HttpHeaders() , HttpStatus.OK);
 	}
-	 
-	 */
-	 
-	 //CAMBIAR ESTADO DE LA LISTA A ENVIADO
-	 /*DEVOLVIENDO UNA LISTA 
 	
-	@PostMapping
-	public ResponseEntity<List<Felicitation>> updateStatus(){
-		
-		List<Felicitation> list = service.getAllFelicitations();
-		List<Felicitation> ls =   service.changeStatusFelicitation(list);
-		
-		return new ResponseEntity<List<Felicitation>>(ls , new HttpHeaders() , HttpStatus.OK);
-		
-	}
-	*/
-	 //CAMBIAR ESTADO DE LA LISTA A ENVIADO
-	 //DEVOLVIENDO UN HttpStatus
-	 @PostMapping
-		public HttpStatus updateStatus(){
-		 List<Felicitation> list = service.getAllFelicitations();
-		 service.changeStatusFelicitation(list);
-		 return HttpStatus.OK;
-	 }
 	 
 	//-----------------------DELETE
 	 @DeleteMapping("/{id}")
