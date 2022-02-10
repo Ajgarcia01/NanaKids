@@ -24,15 +24,11 @@ public class KidService {
 
 	private static final Logger log4 = LoggerFactory.getLogger(KidService.class);
 
-	/*
+	/**
 	 * 
-	 * Devuelve una lista de todos los niños que se encuentran en la BBDD
-	 * 
-	 * En caso de error nos devolveria un NullPointerException, ya que no hay nada,
-	 * la búsqueda sería nula
-	 * 
+	 * @return Una lista de todos los niños de la BBDD
+	 * @throws RecordNotFoundException
 	 */
-
 	public List<Kid> getAllKids() throws RecordNotFoundException {
 		List<Kid> result = repository.findAll();
 		if (!result.isEmpty()) {
@@ -45,16 +41,11 @@ public class KidService {
 
 	}
 
-	/*
-	 * 
-	 * Recibe un niño, el cual con la llamada al repositorio se guarda en la base de
-	 * datos si no actualiza uno que ya existe
-	 * 
-	 * En caso de error nos devolveria un IllegalArgumentException, si falta algun
-	 * valor o hay error. Si el valor es nulo tendriamos un NullPointerException
-	 * 
+	/**
+	 * @param kid
+	 * @return Crea un niño con los parametros pasados en la BBDD
+	 * @throws RecordNotFoundException,NullPointerException,IllegalArgumentException
 	 */
-
 	public Kid createKid(Kid kid) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (kid != null) {
 			if (kid != null && kid.getId() < 0) {
@@ -78,16 +69,12 @@ public class KidService {
 
 	}
 
-	/*
-	 * 
-	 * Actualiza un niño de la base de datos y si no existe lo crea (pasando un niño
-	 * por parametro)
-	 * 
-	 * En caso de error nos devolveria un IllegalArgumentException, si falta algun
-	 * valor o hay error. Si el valor es nulo tendriamos un NullPointerException
-	 * 
+	/**
+	 * @param kid
+	 * @return un niño que ya existe actualizado con nuevos valores
+	 * @throws RecordNotFoundException, NullPointerException,
+	 *                                  IllegalArgumentException
 	 */
-
 	public Kid Update(Kid kid) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (kid != null) {
 			try {
@@ -101,7 +88,8 @@ public class KidService {
 					newKid.setClient(kid.getClient());
 					newKid.setFelicitations(kid.getFelicitations());
 					newKid = repository.save(newKid);
-					log4.info("INFO: El niño con nombre: "+kid.getName()+", ha sido actualizado al nombre: "+newKid.getName());
+					log4.info("INFO: El niño con nombre: " + kid.getName() + ", ha sido actualizado al nombre: "
+							+ newKid.getName());
 					return newKid;
 
 				} else {
@@ -119,15 +107,12 @@ public class KidService {
 		}
 	}
 
-	/*
-	 * 
-	 * Elimina un niño de la base de datos (recibiendo el id del niño por parámetro)
-	 * 
-	 * En caso de error nos devolveria un NullPointerException si el valor es nulo y
-	 * un RecordNotFoundException si el valor es inválido
-	 * 
+	/**
+	 * @param id
+	 * @return borra a un niño en concreto con el id pasado por parametro de la BBDD
+	 * @throws RecordNotFoundException, IllegalArgumentException,
+	 *                                  NullPointerException
 	 */
-
 	public void deleteKidById(Long id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (id != null && id > -1) {
 			try {
@@ -148,16 +133,12 @@ public class KidService {
 		}
 	}
 
-	/*
-	 * 
-	 * Devuelve un niño (Concretamente el niño que tenga la id que es pasada por
-	 * parametro)
-	 * 
-	 * En caso de error nos devolveria un IllegalArgumentException, si falta algun
-	 * valor o hay error. Si el valor es nulo tendriamos un NullPointerException
-	 * 
+	/**
+	 * @param id
+	 * @return un niño en concreto de la BBDD con el id pasado por parámetro
+	 * @throws RecordNotFoundException, NullPointerException,
+	 *                                  IllegalArgumentException
 	 */
-
 	public Kid getKidById(Long id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (id != null) {
 			try {
@@ -180,16 +161,12 @@ public class KidService {
 		}
 	}
 
-	/*
-	 * 
-	 * Devuelve una lista de todos los niños que se encuentran en la BBDD con el
-	 * nombre pasado por parámetro
-	 * 
-	 * En caso de error nos devolveria un IllegalArgumentException, si falta algun
-	 * valor o hay error. Si el valor es nulo tendriamos un NullPointerException
-	 * 
+	/**
+	 * @param title
+	 * @return un niño en concreto de la BBDD con el nombre pasado por parámetro
+	 * @throws RecordNotFoundException, NullPointerException,
+	 *                                  IllegalArgumentException
 	 */
-
 	public List<Kid> getKidByName(String title)
 			throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (title != null) {
