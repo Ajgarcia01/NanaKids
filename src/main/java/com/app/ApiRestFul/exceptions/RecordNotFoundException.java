@@ -13,6 +13,11 @@ public class RecordNotFoundException extends RuntimeException {
 		this.ex = ex;
 		this.f = f;
 	}
+	
+	public RecordNotFoundException(String ex) {
+		super();
+		this.ex = ex;
+	}
         
         public RecordNotFoundException(String ex, String f) {
 		super();
