@@ -25,13 +25,13 @@ public class ClientService {
 	 * Devuelve una lista de todos los clientes que se encuentran en la BBDD
 	 * 
 	 * En caso de error nos devolveria un NullPointerException, ya que no hay nada,
-	 * la búsqueda sería nula
+	 * la bï¿½squeda serï¿½a nula
 	 * 
 	 */
 	public List<Client> getAllClient() throws NullPointerException {
 		List<Client> clientes = repository.findAll();
 		if (!clientes.isEmpty()) {
-			log4.info("Se han obtenido todos los clientes con éxito");
+			log4.info("Se han obtenido todos los clientes con ï¿½xito");
 			return clientes;
 		} else {
 			log4.error("ERROR: No se han encontrado clientes en la base de datos");
@@ -45,7 +45,7 @@ public class ClientService {
 	 * Devuelve un cliente por un id de la BBDD
 	 * 
 	 * En caso de error nos devolveria un NullPointerException, ya que no hay nada,
-	 * la búsqueda sería nula
+	 * la bï¿½squeda serï¿½a nula
 	 * 
 	 */
 	public Client getClientById(String id)
@@ -74,10 +74,10 @@ public class ClientService {
 	 * Guardamos un cliente en la base de datos
 	 * 
 	 * @param cliente Recibe un cliente que es el que guarda en la BBDD
-	 * @return devuelve el cliente que hemos añadido
+	 * @return devuelve el cliente que hemos aï¿½adido
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la bï¿½squeda serï¿½a nula
 	 */
 	public Client createClient(Client cliente)
 			throws NullPointerException, IllegalArgumentException, RecordNotFoundException {
@@ -87,7 +87,7 @@ public class ClientService {
 				log4.info("Creado el cliente Correctamente");
 				return cliente;
 			} catch (IllegalArgumentException e) {
-				log4.error("Se ha recibido valores incorrectos al crear el niño");
+				log4.error("Se ha recibido valores incorrectos al crear el niï¿½o");
 				throw new IllegalArgumentException(e);
 			}
 		} else {
@@ -104,7 +104,7 @@ public class ClientService {
 	 * @return Devuelve el nuevo cliente
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la bï¿½squeda serï¿½a nula
 	 */
 	public Client UpdateClient(Client entity) {
 		if (entity.getId() != null) {
@@ -145,7 +145,7 @@ public class ClientService {
 	 * @param id Identificador de cliente
 	 * 
 	 *           En caso de error nos devolveria un NullPointerException, ya que no
-	 *           hay nada, la búsqueda sería nula
+	 *           hay nada, la bï¿½squeda serï¿½a nula
 	 * 
 	 */
 	public void deleteClient(String id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
@@ -170,4 +170,5 @@ public class ClientService {
 		}
 
 	}
+
 }

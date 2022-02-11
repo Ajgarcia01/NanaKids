@@ -2,6 +2,7 @@ package com.app.ApiRestFul.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,14 +34,14 @@ public class Kid implements Serializable {
 	@Column(name = "Name")
 	private String Name;
 	@Column(name = "BirthDate")
-	private Date BirthDate;
+	private LocalDate BirthDate;
 	@Column(name = "Gender")
 	private boolean Gender;
-	@JsonIgnoreProperties(value = {"kid"}, allowSetters = true)
-	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name="id_kid"), inverseJoinColumns = @JoinColumn(name="id_client"))
-	@ManyToMany(cascade = {CascadeType.MERGE})
-	private List<Client> client; //serian los padres
-	@JsonIgnoreProperties(value = {"kid"}, allowSetters = true)
+	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
+	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name = "id_kid"), inverseJoinColumns = @JoinColumn(name = "id_client"))
+	@ManyToMany(cascade = { CascadeType.MERGE })
+	private List<Client> client; // serian los padres
+	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
 	@OneToMany(mappedBy = "kid", cascade = CascadeType.ALL)
 	private List<Felicitation> felicitations;
 
@@ -48,12 +49,12 @@ public class Kid implements Serializable {
 
 	}
 
-	public Kid(Long id, String name, Date birthDate, boolean gender,List<Felicitation> felicitations) {
+	public Kid(Long id, String name, LocalDate birthDate, boolean gender, List<Felicitation> felicitations) {
 		this.id = id;
 		this.Name = name;
 		this.BirthDate = birthDate;
 		this.Gender = gender;
-		this.felicitations=felicitations;
+		this.felicitations = felicitations;
 	}
 
 	public Long getId() {
@@ -72,11 +73,11 @@ public class Kid implements Serializable {
 		Name = name;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return BirthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		BirthDate = birthDate;
 	}
 
@@ -106,6 +107,7 @@ public class Kid implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Kid [id=" + id + ", Name=" + Name + ", BirthDate=" + BirthDate + ", Gender=" + Gender  + ", felicitations=" + felicitations + "]";
+		return "Kid [id=" + id + ", Name=" + Name + ", BirthDate=" + BirthDate + ", Gender=" + Gender
+				+ ", felicitations=" + felicitations + "]";
 	}
 }

@@ -29,7 +29,7 @@ public class ClientController {
 
 	/**
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los clientes que
-	 *         existan en la BBDD a través del servicio
+	 *         existan en la BBDD a travï¿½s del servicio
 	 */
 	@GetMapping
 	public ResponseEntity<List<Client>> getAllClient() {
@@ -43,11 +43,11 @@ public class ClientController {
 
 	/**
 	 * @param id
-	 * @return cliente en concreto de la BBDD con el ID pasado por parámetro
+	 * @return cliente en concreto de la BBDD con el ID pasado por parï¿½metro
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funciï¿½n de la
+	 *                                 peticiï¿½n)
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Client> getClientById(@PathVariable("id") String id)
@@ -73,8 +73,8 @@ public class ClientController {
 	 *         en la BBDD
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funciï¿½n de la
+	 *                                 peticiï¿½n)
 	 */
 	@PostMapping
 	public ResponseEntity<Client> createClient(@RequestBody Client client)
@@ -98,8 +98,8 @@ public class ClientController {
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y un cliente actualizado
 	 *         en la BBDD
 	 * @throws ResponseStatusException (nos devolveria unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funciï¿½n de la
+	 *                                 peticiï¿½n)
 	 */
 	@PutMapping
 	public ResponseEntity<Client> UpdateClient(@RequestBody Client client)
@@ -125,8 +125,8 @@ public class ClientController {
 	 *         la BBDD
 	 * @throws ResponseStatusException (En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funciï¿½n de la
+	 *                                 peticiï¿½n)
 	 */
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteClientById(@PathVariable("id") String id)
@@ -146,5 +146,4 @@ public class ClientController {
 		}
 
 	}
-
 }
