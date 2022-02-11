@@ -7,6 +7,7 @@ import com.app.ApiRestFul.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.app.ApiRestFul.services.AdminService;
 import java.util.List;
@@ -28,72 +29,115 @@ public class AdminController {
     AdminService service;
     //antes de tocar esto tener el servicio hecho
 
+	/**
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los administradores que
+	 *         existan en la BBDD a través del servicio
+	 */
     @GetMapping
     public ResponseEntity<List<Admin>> getAllClient() {
         List<Admin> list = service.getAllAdmin();
         return new ResponseEntity<List<Admin>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
+	/**
+	 * @param id
+	 * @return administrador en concreto de la BBDD con el id pasado por
+	 *         parámetro
+	 * @throws ResponseStatusException ( En caso de error nos devolveria
+	 *                                 unHttpStatus.NOT_FOUND o
+	 *                                 HttpStatus.BAD_REQUEST, en función de la
+	 *                                 petición)
+	 */
     @GetMapping("/{id}")
     public ResponseEntity<Admin> getAdminById(@PathVariable("id") String id)
-            throws RecordNotFoundException {
+    		 throws ResponseStatusException {
         if (id != null) {
             try {
                 Admin admin = service.getAdminById(id);
                 return new ResponseEntity<Admin>(admin, new HttpHeaders(), HttpStatus.OK);
-            } catch (Exception e) {
-                return new ResponseEntity<Admin>(new HttpHeaders(), HttpStatus.NOT_FOUND);
-            }
-        } else {
-            return new ResponseEntity<Admin>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
+            }catch (ResponseStatusException e) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El administrador con id: " + id + "no se ha encontrado",
+						e);
+			}
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
+		}
 
     }
 
+	/**
+	 * @param admin
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y un nuevo administrador creado en
+	 *         la BBDD
+	 * @throws ResponseStatusException ( En caso de error nos devolveria
+	 *                                 unHttpStatus.NOT_FOUND o
+	 *                                 HttpStatus.BAD_REQUEST, en función de la
+	 *                                 petición)
+	 */
     @PostMapping
-    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
+    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) throws ResponseStatusException {
         if (admin != null) {
             try {
                 Admin newAdmin = service.createAdmin(admin);
                 return new ResponseEntity<Admin>(newAdmin, new HttpHeaders(), HttpStatus.OK);
-            } catch (Exception e) {
-                return new ResponseEntity<Admin>(new HttpHeaders(), HttpStatus.NOT_FOUND);
-            }
-        } else {
-            return new ResponseEntity<Admin>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
+            } catch (ResponseStatusException e) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El administrador no ha sido guardado correctamente", e);
+			}
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
+		}
 
     }
-
+    
+	/**
+	 * @param admin
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y un administrador actualizado en
+	 *         la BBDD
+	 * @throws ResponseStatusException (nos devolveria unHttpStatus.NOT_FOUND o
+	 *                                 HttpStatus.BAD_REQUEST, en función de la
+	 *                                 petición)
+	 */
     @PutMapping
     public ResponseEntity<Admin> UpdateAdmin(@RequestBody Admin admin)
-            throws RecordNotFoundException {
+    		 throws ResponseStatusException {
         if (admin != null) {
             try {
                 Admin newAdmin = service.createAdmin(admin);
                 return new ResponseEntity<Admin>(newAdmin, new HttpHeaders(), HttpStatus.OK);
-            } catch (Exception e) {
-                return new ResponseEntity<Admin>(new HttpHeaders(), HttpStatus.NOT_FOUND);
-            }
-        } else {
-            return new ResponseEntity<Admin>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
+            } catch (ResponseStatusException e) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El administrador no ha sido actualizado correctamente",
+						e);
+			}
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
+		}
 
     }
 
+	/**
+	 * @param id
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y un administrador eliminado en la
+	 *         BBDD
+	 * @throws ResponseStatusException (En caso de error nos devolveria
+	 *                                 unHttpStatus.NOT_FOUND o
+	 *                                 HttpStatus.BAD_REQUEST, en función de la
+	 *                                 petición)
+	 */
     @DeleteMapping("/{id}")
     public HttpStatus deleteAdminById(@PathVariable("id") String id)
-            throws RecordNotFoundException {
+    		 throws ResponseStatusException {
         if (id != null) {
             try {
                 service.deleteAdmin(id);
                 return HttpStatus.ACCEPTED;
-            } catch (Exception e) {
-                return HttpStatus.NOT_FOUND;
-            }
-        } else {
-            return HttpStatus.BAD_REQUEST;
-        }
+            }catch (ResponseStatusException e) {
+
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El administrador no ha sido eliminado correctamente",
+						e);
+			}
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
+		}
 
     }
 
