@@ -18,7 +18,7 @@ public class AdminService {
 	@Autowired
 	AdminRepository repository;
 
-	private static final Logger log4 = LoggerFactory.getLogger(AdminServices.class);
+	private static final Logger log4 = LoggerFactory.getLogger(AdminService.class);
 
 	/**
 	 * Devuelve una lista de todos los Administradores de la base de datos
@@ -118,7 +118,7 @@ public class AdminService {
 					newAdmin.setPassword(entity.getPassword());
 					newAdmin = repository.save(newAdmin);
 					return newAdmin;
-					log4.info("Administrador actualizazdo");
+					//log4.info("Administrador actualizazdo");
 				} else {
 					log4.error("ERROR:Se ha recibido datos incorrectos de administrador");
 					throw new RecordNotFoundException("Client not found", entity.getUser());
