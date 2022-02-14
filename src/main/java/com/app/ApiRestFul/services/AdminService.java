@@ -1,6 +1,7 @@
 package com.app.ApiRestFul.services;
 
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
+
 import com.app.ApiRestFul.model.Admin;
 
 import org.slf4j.Logger;
@@ -117,8 +118,9 @@ public class AdminService {
 					newAdmin.setEmail(entity.getEmail());
 					newAdmin.setPassword(entity.getPassword());
 					newAdmin = repository.save(newAdmin);
-					return newAdmin;
 					log4.info("Administrador actualizazdo");
+					return newAdmin;
+					
 				} else {
 					log4.error("ERROR:Se ha recibido datos incorrectos de administrador");
 					throw new RecordNotFoundException("Client not found", entity.getUser());
