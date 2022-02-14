@@ -145,7 +145,7 @@ public class ClientController {
 			throws RecordNotFoundException, ResponseStatusException {
 		if (client != null) {
 			try {
-				Client newClient = service.createClient(client);
+				Client newClient = service.UpdateClient(client);
 				return new ResponseEntity<Client>(newClient, new HttpHeaders(), HttpStatus.OK);
 
 			} catch (ResponseStatusException e) {
