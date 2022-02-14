@@ -1,6 +1,7 @@
 package com.app.ApiRestFul.controller;
 
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
+
 import com.app.ApiRestFul.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.app.ApiRestFul.services.ClientService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +24,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+
+/*
+ * @author=Eduardo Carmona Lopez
+ */
 
 @RestController
 @RequestMapping("/client")
@@ -31,6 +42,13 @@ public class ClientController {
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los clientes que
 	 *         existan en la BBDD a trav�s del servicio
 	 */
+    @ApiOperation(value = "Get all client", notes = "Returns a client list")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved"),
+      @ApiResponse(code = 404, message = "ERROR:Can't be found admins"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping
 	public ResponseEntity<List<Client>> getAllClient() {
 		try {
@@ -49,6 +67,13 @@ public class ClientController {
 	 *                                 HttpStatus.BAD_REQUEST, en funci�n de la
 	 *                                 petici�n)
 	 */
+    @ApiOperation(value = "Get a client by id", notes = "Returns a client as per the id")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,client found"),
+      @ApiResponse(code = 404, message = "ERROR:Client not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping("/{id}")
 	public ResponseEntity<Client> getClientById(@PathVariable("id") String id)
 			throws RecordNotFoundException, ResponseStatusException {
@@ -76,6 +101,13 @@ public class ClientController {
 	 *                                 HttpStatus.BAD_REQUEST, en funci�n de la
 	 *                                 petici�n)
 	 */
+    @ApiOperation(value = "Create a new client", notes = "Returns a new  client")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,client Created"),
+      @ApiResponse(code = 404, message = "ERROR:Client can't be created"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PostMapping
 	public ResponseEntity<Client> createClient(@RequestBody Client client)
 			throws RecordNotFoundException, ResponseStatusException {
@@ -101,6 +133,13 @@ public class ClientController {
 	 *                                 HttpStatus.BAD_REQUEST, en funci�n de la
 	 *                                 petici�n)
 	 */
+    @ApiOperation(value = "Update a client", notes = "Returns a client updated")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,client Updated"),
+      @ApiResponse(code = 404, message = "ERROR:Client can't be update"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PutMapping
 	public ResponseEntity<Client> UpdateClient(@RequestBody Client client)
 			throws RecordNotFoundException, ResponseStatusException {
@@ -128,6 +167,13 @@ public class ClientController {
 	 *                                 HttpStatus.BAD_REQUEST, en funci�n de la
 	 *                                 petici�n)
 	 */
+    @ApiOperation(value = "Delete a client", notes = "Delete a client")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,client Deleted"),
+      @ApiResponse(code = 404, message = "ERROR:Client can't be delete"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteClientById(@PathVariable("id") String id)
 			throws RecordNotFoundException, ResponseStatusException {

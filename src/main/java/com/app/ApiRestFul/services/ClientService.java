@@ -12,6 +12,10 @@ import com.app.ApiRestFul.repository.ClientRepository;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * @author=Eduardo Carmona Lopez
+ */
+
 @Service
 public class ClientService {
 

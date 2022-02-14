@@ -13,6 +13,10 @@ import com.app.ApiRestFul.repository.AdminRepository;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * @author=Eduardo Carmona Lopez
+ */
+
 @Service
 public class AdminService {
 
