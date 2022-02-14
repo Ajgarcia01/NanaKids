@@ -29,7 +29,7 @@ public class Client {
 	@Column(name = "Surname")
 	private String Surname;
 	@Column(name = "Phone", length = 9)
-	private int Phone;
+	private String Phone;
 	@Column(name = "Email")
 	private String Email;
 	@JsonIgnoreProperties(value = { "client" }, allowSetters = true)
@@ -44,7 +44,7 @@ public class Client {
 
 	}
 
-	public Client(String id, boolean type, String name, String surname, int phone, String email, Admin admin,
+	public Client(String id, boolean type, String name, String surname, String phone, String email, Admin admin,
 			List<Kid> kid) {
 		this.id = id;
 		this.type = type;
@@ -88,11 +88,11 @@ public class Client {
 		Surname = surname;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return Phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		Phone = phone;
 	}
 

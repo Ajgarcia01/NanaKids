@@ -157,10 +157,10 @@ public class AdminController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
-    @ApiOperation(value = "Delete a admin", notes = "Returns a admin updated")
+    @ApiOperation(value = "Delete a admin", notes = "Returns a admin deleted")
     @ApiResponses(value = {
-      @ApiResponse(code = 200, message = "Successfully retrieved, Admin updated"),
-      @ApiResponse(code = 404, message = "ERROR:Admin can't be update"),
+      @ApiResponse(code = 200, message = "Successfully retrieved, Admin deleted"),
+      @ApiResponse(code = 404, message = "ERROR:Admin can't be delete"),
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })

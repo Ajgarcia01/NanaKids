@@ -48,7 +48,6 @@ public class KidService {
 	 */
 	public Kid createKid(Kid kid) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (kid != null) {
-			if (kid != null && kid.getId() < 0) {
 				try {
 					kid = repository.save(kid);
 					log4.info("Niño creado con éxito");
@@ -58,9 +57,6 @@ public class KidService {
 					throw new IllegalArgumentException(
 							"Los valores introducidos no son correctos" + "IllegalArgumentException: " + e);
 				}
-			} else {
-				return Update(kid);
-			}
 
 		} else {
 			log4.error("ERROR: Hay datos que son nulos al crear niño");

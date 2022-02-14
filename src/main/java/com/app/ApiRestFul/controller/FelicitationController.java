@@ -23,6 +23,10 @@ import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 import com.app.ApiRestFul.model.Felicitation;
 import com.app.ApiRestFul.services.FelicitationService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 
 /*
  * @author= Gonzalo Bretones-Mora Quero 
@@ -52,7 +56,13 @@ public class FelicitationController {
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND)
 	 */
-
+    @ApiOperation(value = "Get all felicitation", notes = "Returns a felicitation list")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved"),
+      @ApiResponse(code = 404, message = "ERROR:Can't get all felicitation"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping
 	public ResponseEntity<List<Felicitation>> getAllFelicitations() {
 		try {
@@ -107,7 +117,13 @@ public class FelicitationController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
-	
+    @ApiOperation(value = "Get all felicitation by type", notes = "Returns all felicitation as per the type")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,felicitations found"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping("/search/{type}")
 	public ResponseEntity<List<Felicitation>> getListByType( @PathVariable("type")int type){
 		try {
@@ -132,7 +148,13 @@ public class FelicitationController {
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND)
 	 */
-	
+    @ApiOperation(value = "Get all felicitation by type and date", notes = "Returns all felicitation as per the type and date")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Felicitations found"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping("/search/date-type/{type}")
 	public ResponseEntity<List<Felicitation>> getlistFelicitationByDateAndType(@PathVariable("type")int type ){
 		try {
@@ -155,6 +177,13 @@ public class FelicitationController {
 	 *                                 unHttpStatus.NOT_FOUND)
 	 */
 	
+    @ApiOperation(value = "Get total felicitations in the BBDD", notes = "Returns the total felicitations ")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Felicitations found"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping("/count")
 	public ResponseEntity<Long> getCount(){
 		try {
@@ -179,7 +208,13 @@ public class FelicitationController {
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND)
 	 */
-	
+    @ApiOperation(value = "Get total felicitations in the BBDD", notes = "Returns the total felicitations for Type and date ")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Felicitations found"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping("/count/date-type/{type}")
 	public ResponseEntity<Long> getCountFelicitationByDateAndType(@PathVariable("type")int type){
 		try {
@@ -212,6 +247,13 @@ public class FelicitationController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Create felicitation", notes = "Returns the new felicitation ")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Felicitations created"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not create"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PostMapping
 	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f) throws ResponseStatusException {
 		if (f != null) {
@@ -245,7 +287,13 @@ public class FelicitationController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
-	
+    @ApiOperation(value = "Update felicitation", notes = "Returns the felicitation updated")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Felicitations updated"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not update"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PutMapping
 	public ResponseEntity<Felicitation> UpdateFelicitation(@RequestBody Felicitation f) throws ResponseStatusException {
 		if (f != null && f.getId() > 0) {
@@ -271,7 +319,13 @@ public class FelicitationController {
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND)
 	 */
-	
+    @ApiOperation(value = "Change the atribute(type) of the felicitation", notes = "Returns the new felicitation ")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Atribute type change"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not update"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PutMapping("/change-to-sent/{type}")
 	public HttpStatus changeToSentFelicitation(@PathVariable("type")int type) throws ResponseStatusException {
 		
@@ -294,6 +348,13 @@ public class FelicitationController {
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND)
 	 */
+    @ApiOperation(value = "Change the atribute(type) of the felicitation", notes = "Returns the felicitation updated")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Atribute type change"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not update"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PutMapping("/change-to-unsent/{type}")
 	public HttpStatus changeToUnentFelicitation(@PathVariable("type")int type) throws ResponseStatusException {
 		
@@ -323,6 +384,13 @@ public class FelicitationController {
 	 *                                 petición)
 	 */
 	
+    @ApiOperation(value = "Delete felicitation", notes = "Delete felicitation")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,felicitation deleted"),
+      @ApiResponse(code = 404, message = "ERROR:Felicitations not delete"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteFelicitation(@PathVariable("id") Long id) throws ResponseStatusException {
 		if (id != null && id > -1) {
