@@ -19,7 +19,7 @@ public class AdminService {
 	@Autowired
 	AdminRepository repository;
 
-	private static final Logger log4 = LoggerFactory.getLogger(AdminServices.class);
+	private static final Logger log4 = LoggerFactory.getLogger(AdminService.class);
 
 	/**
 	 * Devuelve una lista de todos los Administradores de la base de datos
