@@ -1,15 +1,17 @@
 package com.app.ApiRestFul.controller;
 
-import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 import com.app.ApiRestFul.model.Admin;
-import com.app.ApiRestFul.model.Client;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.app.ApiRestFul.services.AdminService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
+
 import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+/*
+ * @author=Eduardo Carmona Lopez
+ */
 
 @RestController
 @RequestMapping("/admin")
@@ -33,7 +39,14 @@ public class AdminController {
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los administradores que
 	 *         existan en la BBDD a través del servicio
 	 */
-    @GetMapping
+    @ApiOperation(value = "Get all admin", notes = "Returns an admin list")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved"),
+      @ApiResponse(code = 404, message = "Not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
+    @GetMapping  
     public ResponseEntity<List<Admin>> getAllClient() {
         List<Admin> list = service.getAllAdmin();
         return new ResponseEntity<List<Admin>>(list, new HttpHeaders(), HttpStatus.OK);
@@ -48,6 +61,13 @@ public class AdminController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Get a admin by id", notes = "Returns a admin as per the id")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Admin found"),
+      @ApiResponse(code = 404, message = "ERROR:Admin not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Admin> getAdminById(@PathVariable("id") String id)
     		 throws ResponseStatusException {
@@ -74,6 +94,13 @@ public class AdminController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Create a admin", notes = "Returns a new  admin")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,Admin created"),
+      @ApiResponse(code = 404, message = "ERROR:Admin can't be create"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
     @PostMapping
     public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) throws ResponseStatusException {
         if (admin != null) {
@@ -97,12 +124,19 @@ public class AdminController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Update a admin", notes = "Returns a admin updated")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved, Admin updated"),
+      @ApiResponse(code = 404, message = "ERROR:Admin can't be update"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
     @PutMapping
     public ResponseEntity<Admin> UpdateAdmin(@RequestBody Admin admin)
     		 throws ResponseStatusException {
         if (admin != null) {
             try {
-                Admin newAdmin = service.createAdmin(admin);
+                Admin newAdmin = service.UpdateAdmin(admin);
                 return new ResponseEntity<Admin>(newAdmin, new HttpHeaders(), HttpStatus.OK);
             } catch (ResponseStatusException e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El administrador no ha sido actualizado correctamente",
@@ -123,6 +157,13 @@ public class AdminController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Delete a admin", notes = "Returns a admin updated")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved, Admin updated"),
+      @ApiResponse(code = 404, message = "ERROR:Admin can't be update"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
     @DeleteMapping("/{id}")
     public HttpStatus deleteAdminById(@PathVariable("id") String id)
     		 throws ResponseStatusException {

@@ -18,6 +18,10 @@ import org.springframework.web.server.ResponseStatusException;
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.services.KidService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /*
  * @author=Jesús García Luque 
  */
@@ -32,6 +36,13 @@ public class KidController {
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los niños que
 	 *         existan en la BBDD a través del servicio
 	 */
+    @ApiOperation(value = "Get all kids", notes = "Returns a kid list")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved"),
+      @ApiResponse(code = 404, message = "Not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping
 	public ResponseEntity<List<Kid>> getAllKids() {
 		try {
@@ -52,6 +63,13 @@ public class KidController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Get a kid by name", notes = "Returns a kid as per the name")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,kid found"),
+      @ApiResponse(code = 404, message = "ERROR:Kid not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping("/search/{name}")
 	public ResponseEntity<List<Kid>> getKidByName(@PathVariable("name") String name) throws ResponseStatusException {
 		if (name != null) {
@@ -76,6 +94,13 @@ public class KidController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Get a kid by id", notes = "Returns a kid as per the id")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,kid found"),
+      @ApiResponse(code = 404, message = "ERROR:Kid not found"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@GetMapping("/{id}")
 	public ResponseEntity<Kid> getKidById(@PathVariable("id") Long id) throws ResponseStatusException {
 
@@ -102,6 +127,13 @@ public class KidController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Create a new kid", notes = "Returns a new kid")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,kid can be created"),
+      @ApiResponse(code = 404, message = "ERROR:Kid can't be created"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PostMapping
 	public ResponseEntity<Kid> createKid(@RequestBody Kid n) throws ResponseStatusException {
 		if (n != null) {
@@ -124,6 +156,13 @@ public class KidController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Update a kid", notes = "Returns a updated kid")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,kid can be created"),
+      @ApiResponse(code = 404, message = "ERROR:Kid can't be created"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@PutMapping
 	public ResponseEntity<Kid> UpdateKid(@RequestBody Kid n) throws ResponseStatusException {
 		if (n != null && n.getId() > 0) {
@@ -149,6 +188,13 @@ public class KidController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @ApiOperation(value = "Delete a kid", notes = "Delete a kid")
+    @ApiResponses(value = {
+      @ApiResponse(code = 200, message = "Successfully retrieved,kid can be deleted"),
+      @ApiResponse(code = 404, message = "ERROR:Kid can't be deleted"),
+      @ApiResponse(code = 400, message = "Bad request"),
+      @ApiResponse(code = 500, message = "Internal Error ")
+    })
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteKid(@PathVariable("id") Long id) throws ResponseStatusException {
 		if (id != null && id > -1) {

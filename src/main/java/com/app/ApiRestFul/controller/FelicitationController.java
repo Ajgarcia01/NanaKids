@@ -23,6 +23,7 @@ import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 import com.app.ApiRestFul.model.Felicitation;
 import com.app.ApiRestFul.services.FelicitationService;
 
+
 /*
  * @author= Gonzalo Bretones-Mora Quero 
  */
@@ -51,7 +52,7 @@ public class FelicitationController {
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND)
 	 */
-	
+
 	@GetMapping
 	public ResponseEntity<List<Felicitation>> getAllFelicitations() {
 		try {
@@ -64,7 +65,6 @@ public class FelicitationController {
 	}
 	
 	
-	
 	/**
 	 * -->OBTENER FELICITACION POR ID	<--
 	 * 
@@ -73,8 +73,8 @@ public class FelicitationController {
 	 * 
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en funci髇 de la
-	 *                                 petici髇)
+	 *                                 HttpStatus.BAD_REQUEST, en funci贸n de la
+	 *                                 petici贸n)
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Felicitation> getItemById(@PathVariable("id") Long id) throws RecordNotFoundException {
@@ -104,8 +104,8 @@ public class FelicitationController {
 	 * 
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en funci髇 de la
-	 *                                 petici髇)
+	 *                                 HttpStatus.BAD_REQUEST, en funci贸n de la
+	 *                                 petici贸n)
 	 */
 	
 	@GetMapping("/search/{type}")
@@ -201,7 +201,7 @@ public class FelicitationController {
 	
 	
 	/**
-	 * --> A袮DIR FELICITACION	<--
+	 * --> A脩ADIR FELICITACION	<--
 	 * 
 	 * @param f Felicitacion
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y una nueva felicitacion creado en
@@ -209,8 +209,8 @@ public class FelicitationController {
 	 * 
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en funci髇 de la
-	 *                                 petici髇)
+	 *                                 HttpStatus.BAD_REQUEST, en funci贸n de la
+	 *                                 petici贸n)
 	 */
 	@PostMapping
 	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f) throws ResponseStatusException {
@@ -242,8 +242,8 @@ public class FelicitationController {
 	 * 
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en funci髇 de la
-	 *                                 petici髇)
+	 *                                 HttpStatus.BAD_REQUEST, en funci贸n de la
+	 *                                 petici贸n)
 	 */
 	
 	@PutMapping
@@ -319,8 +319,8 @@ public class FelicitationController {
 	 * 
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en funci髇 de la
-	 *                                 petici髇)
+	 *                                 HttpStatus.BAD_REQUEST, en funci贸n de la
+	 *                                 petici贸n)
 	 */
 	
 	@DeleteMapping("/{id}")

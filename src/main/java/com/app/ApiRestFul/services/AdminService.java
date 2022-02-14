@@ -2,6 +2,7 @@ package com.app.ApiRestFul.services;
 
 
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
+
 import com.app.ApiRestFul.model.Admin;
 
 import org.slf4j.Logger;
@@ -12,6 +13,10 @@ import org.springframework.stereotype.Service;
 import com.app.ApiRestFul.repository.AdminRepository;
 import java.util.List;
 import java.util.Optional;
+
+/*
+ * @author=Eduardo Carmona Lopez
+ */
 
 @Service
 public class AdminService {
@@ -27,7 +32,7 @@ public class AdminService {
 	 * @return Lista de todos los administradores
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la bÃºsqueda serÃ­a nula
 	 */
 	public List<Admin> getAllAdmin() throws RecordNotFoundException {
 		List<Admin> admin = repository.findAll();
@@ -47,7 +52,7 @@ public class AdminService {
 	 * @return Devuelve un administrador de la base de datos por un ID
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la bÃºsqueda serÃ­a nula
 	 */
 	public Admin getAdminById(String id)
 			throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
@@ -75,11 +80,11 @@ public class AdminService {
 
 	/**
 	 * 
-	 * @param admin Administrador que vamos a añadir a la base de datos
+	 * @param admin Administrador que vamos a aÃ±adir a la base de datos
 	 * @return Devuelve el administrador
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la bÃºsqueda serÃ­a nula
 	 */
 	public Admin createAdmin(Admin admin)
 			throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
@@ -105,7 +110,7 @@ public class AdminService {
 	 * @return Administrador actualizado
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la bÃºsqueda serÃ­a nula
 	 */
 	public Admin UpdateAdmin(Admin entity)
 			throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
@@ -118,8 +123,10 @@ public class AdminService {
 					newAdmin.setEmail(entity.getEmail());
 					newAdmin.setPassword(entity.getPassword());
 					newAdmin = repository.save(newAdmin);
+					log4.info("Administrador actualizazdo");
 					return newAdmin;
-					//log4.info("Administrador actualizazdo");
+					
+
 				} else {
 					log4.error("ERROR:Se ha recibido datos incorrectos de administrador");
 					throw new RecordNotFoundException("Client not found", entity.getUser());
@@ -143,7 +150,7 @@ public class AdminService {
 	 * @param id Identificador del administrador
 	 * 
 	 *           En caso de error nos devolveria un NullPointerException, ya que no
-	 *           hay nada, la búsqueda sería nula
+	 *           hay nada, la bÃºsqueda serÃ­a nula
 	 */
 	public void deleteAdmin(String id) throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
 
