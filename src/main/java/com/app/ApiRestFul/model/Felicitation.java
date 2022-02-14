@@ -1,6 +1,8 @@
 package com.app.ApiRestFul.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +16,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/*
+ * @author= Gonzalo Bretones-Mora Quero 
+ */
 @Entity
 @Table(name = "felicitation")
 public class Felicitation implements Serializable {
@@ -27,20 +32,25 @@ public class Felicitation implements Serializable {
 	private int Type;
 	@Column(name = "Estate")
 	private boolean Estate;
+	@Column(name = "dateSend")
+	private LocalDate date_send;
 	@Column(name = "Image")
 	private String image;
+	//CONVERTIR A LOCALDATE
 	@JsonIgnoreProperties(value = {"felicitations"}, allowSetters = true)
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_kid")
 	private Kid kid;
 
+	
 	public Felicitation() {
-
+		super();
 	}
 
-	public Felicitation(Long id, int type, String image,Kid kid) {
+	public Felicitation(Long id, int type, LocalDate date, String image,Kid kid) {
 		this.id = id;
 		this.Type = type;
+		this.date_send=date;
 		this.image = image;
 		this.kid=kid;
 	}
@@ -77,7 +87,13 @@ public class Felicitation implements Serializable {
 		Estate = estate;
 	}
 	
-	
+	public LocalDate getDateSend() {
+		return date_send;
+	}
+
+	public void setDateSend(LocalDate dateSend) {
+		this.date_send = dateSend;
+	}
 
 	public Kid getKid() {
 		return kid;
@@ -93,7 +109,9 @@ public class Felicitation implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Felicitation [id=" + id + ", Type=" + Type + ", Estate=" + Estate + ", image=" + image + ", kid=" + kid
-				+ "]";
+		return "Felicitation [id=" + id + ", Type=" + Type + ", Estate=" + Estate + ", dateSend=" + date_send
+				+ ", image=" + image + ", kid=" + kid + "]";
 	}
+
+	
 }
