@@ -4,15 +4,17 @@ public class Content {
 	String message;
 	String urlImage;
 	Client client;
+	Felicitation felicitation;
 	
 	public Content() {
 		
 	}
 
-	public Content(String message, String urlImage,Client c) {
+	public Content(String message, String urlImage,Client c,Felicitation felicitation) {
 		this.message = message;
 		this.urlImage = urlImage;
 		this.client=c;
+		this.felicitation=felicitation;
 	}
 
 	public String getMessage() {
@@ -33,12 +35,22 @@ public class Content {
 	
 	
 
-	public Client getC() {
+	public Client getClient() {
 		return client;
 	}
 
-	public void setC(Client c) {
+	public void setClient(Client c) {
 		this.client = c;
+	}
+	
+	
+
+	public Felicitation getFelicitation() {
+		return felicitation;
+	}
+
+	public void setFelicitation(Felicitation felicitation) {
+		this.felicitation = felicitation;
 	}
 
 	@Override

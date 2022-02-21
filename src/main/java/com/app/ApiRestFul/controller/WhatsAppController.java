@@ -34,7 +34,7 @@ public class WhatsAppController {
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los niños que
 	 *         existan en la BBDD a través del servicio
 	 */
-    @ApiOperation(value = "Send Message on Api WhatsApp", notes = "Returns a send message on whatsapp")
+    @ApiOperation(value = "Send Message on Api WhatsApp by Twilio", notes = "Returns a send message on whatsapp")
     @ApiResponses(value = {
       @ApiResponse(code = 200, message = "Successfully retrieved"),
       @ApiResponse(code = 404, message = "Not found"),

@@ -32,13 +32,13 @@ public class WhatsAppService {
 		
 		try {
 			 message = Message.creator(
-		                new PhoneNumber("whatsapp:"+c.getC().getPhone()), //to
+		                new PhoneNumber("whatsapp:"+c.getClient().getPhone()), //to
 		                new PhoneNumber("whatsapp:+14155238886"), //from
-		                c.getMessage()).setMediaUrl(URI.create(c.getUrlImage()))
+		                c.getMessage()).setMediaUrl(URI.create(c.getFelicitation().getImage()))
 		            .create();
 			 log4.info("EL MENSAJE HA SIDO ENVIADO"+ message.getSid());
 		} catch (Exception e) {
-			log4.error("EL MENSAJE NO HA PODIDO SER ENVIADO "+message.getErrorCode()+e);
+			log4.error("EL MENSAJE NO HA PODIDO SER ENVIADO "+e);
 			throw new RecordNotFoundException("ERROR EN EL ENVIO");
 		}
 	       return message;
