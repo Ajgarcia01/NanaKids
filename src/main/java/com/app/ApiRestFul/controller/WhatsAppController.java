@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.app.ApiRestFul.model.Content;
 import com.app.ApiRestFul.model.Kid;
 import com.app.ApiRestFul.services.WhatsAppService;
 import com.twilio.rest.api.v2010.account.Message;
@@ -41,10 +42,10 @@ public class WhatsAppController {
       @ApiResponse(code = 500, message = "Internal Error ")
     })
 	@PostMapping
-	public ResponseEntity<Message> sendMessage(@RequestBody Message m) throws ResponseStatusException {
-		if (m!=null) {
+	public ResponseEntity<Message> sendMessage(@RequestBody Content c) throws ResponseStatusException {
+		if (c!=null) {
 			try {
-				Message message = service.sendMessage();
+				Message message = service.sendMessage(c);
 				return new ResponseEntity<Message>(message,new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El mensaje no ha sido enviado correctamente", e);
