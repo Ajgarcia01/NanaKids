@@ -1,5 +1,6 @@
 package com.app.ApiRestFul.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -19,13 +20,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /*
- * @author=Jesús García Luque 
+ * @author=Jesus Garcia Luque 
  */
 
 @Entity
 @Table(name = "kid")
 public class Kid implements Serializable {
-
+	@Serial
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +40,9 @@ public class Kid implements Serializable {
 	private boolean Gender;
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
 	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name = "id_kid"), inverseJoinColumns = @JoinColumn(name = "id_client"))
-	@ManyToMany(cascade = { CascadeType.MERGE })
+	@ManyToMany(cascade = { CascadeType.ALL })
 	private List<Client> client; // serian los padres
+	
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
 	@OneToMany(mappedBy = "kid", cascade = CascadeType.ALL)
 	private List<Felicitation> felicitations;
@@ -111,3 +113,4 @@ public class Kid implements Serializable {
 				+ ", felicitations=" + felicitations + "]";
 	}
 }
+

@@ -1,10 +1,14 @@
 package com.app.ApiRestFul.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,17 +18,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "admin")
-public class Admin {
+public class Admin implements Serializable{
 
+	@Serial
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@Column(name = "user")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	
+	@Column(name = "_user")
 	private String user;
 	@Column(name = "password")
 	private String password;
 	@Column(name = "email")
 	private String email;
-	@JsonIgnoreProperties(value = {"admin"}, allowSetters = true)
-	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties(value = {"idadmin"}, allowSetters = true)
+	@OneToMany(mappedBy = "idadmin")
 	private List<Client> clients;
 
 	public Admin() {
@@ -78,3 +89,4 @@ public class Admin {
 	
 	
 }
+

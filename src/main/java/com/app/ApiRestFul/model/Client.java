@@ -1,10 +1,14 @@
 package com.app.ApiRestFul.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -15,13 +19,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "client")
-public class Client {
-
-	// private static final long serialVersionUID = 1L;
-
+public class Client implements Serializable {
+	@Serial
+	private static final long serialVersionUID = 1L;
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private String id;
+	private Long id;
+	
+	@Column(name = "dni")
+	private String dni;
 	@Column(name = "Type")
 	private boolean type; // true padre, false madre
 	@Column(name = "Name")
@@ -33,35 +41,35 @@ public class Client {
 	@Column(name = "Email")
 	private String Email;
 	@JsonIgnoreProperties(value = { "client" }, allowSetters = true)
-	@ManyToMany(mappedBy = "client", cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Kid> kid;
+	
 	@JsonIgnoreProperties(value = { "clients" }, allowSetters = true)
-	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "user_admin")
-	private Admin admin;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private Admin idadmin;
 
-	public Client() {
 
-	}
 
-	public Client(String id, boolean type, String name, String surname, String phone, String email, Admin admin,
-			List<Kid> kid) {
+	public Client(Long id, String dni, boolean type, String name, String surname, String phone, String email,
+			List<Kid> kid, Admin idadmin) {
 		this.id = id;
+		this.dni = dni;
 		this.type = type;
-		this.Name = name;
-		this.Surname = surname;
-		this.Phone = phone;
-		this.Email = email;
-		this.admin = admin;
+		Name = name;
+		Surname = surname;
+		Phone = phone;
+		Email = email;
 		this.kid = kid;
+		this.idadmin = idadmin;
 	}
 
 	public String getId() {
-		return id;
+		return dni;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String dni) {
+		this.dni = dni;
 	}
 
 	public boolean isType() {
@@ -113,17 +121,18 @@ public class Client {
 	}
 
 	public Admin getAdmin() {
-		return admin;
+		return idadmin;
 	}
 
 	public void setAdmin(Admin admin) {
-		this.admin = admin;
+		this.idadmin = admin;
 	}
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", type=" + type + ", Name=" + Name + ", Surname=" + Surname + ", Phone=" + Phone
-				+ ", Email=" + Email + ", admin=" + admin + "]";
+		return "Client [id=" + dni + ", type=" + type + ", Name=" + Name + ", Surname=" + Surname + ", Phone=" + Phone
+				+ ", Email=" + Email + ", admin=" + idadmin + "]";
 	}
 
 }
+
