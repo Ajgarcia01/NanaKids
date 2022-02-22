@@ -74,7 +74,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.app.ApiRestful.AppMain</mainClass>
+							<mainClass>com.app.ApiRestFul.AppMain</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -84,7 +84,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<fork>true</fork>
-					<mainClass>com.app.ApiRestful.AppMain}</mainClass>
+					<mainClass>com.app.ApiRestFul.AppMain}</mainClass>
 				</configuration>
 				<executions>
 					<execution>
