@@ -82,7 +82,7 @@ public interface FelicitationRepository extends JpaRepository<Felicitation,Long>
 	void changeToUnsent(int type, LocalDate LocalDateNow );
 	
 	/*
-	 * Consulta para crear una felicitacion con la fecha del niño y el estado a false por defecto
+	 * Consulta para crear una felicitacion con la fecha del nino y el estado a false por defecto
 	 * 
 	 * -->CREAR FELICITACION<--
 	 * 

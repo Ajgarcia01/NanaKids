@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 /*
- * @author=Jesús García Luque 
+ * @author=Jesï¿½s Garcï¿½a Luque 
  */
 
 @RestController
@@ -33,8 +33,8 @@ public class KidController {
 	KidService service;
 
 	/**
-	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los niños que
-	 *         existan en la BBDD a través del servicio
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los ninos que
+	 *         existan en la BBDD a traves del servicio
 	 */
     @ApiOperation(value = "Get all kids", notes = "Returns a kid list")
     @ApiResponses(value = {
@@ -56,12 +56,12 @@ public class KidController {
 
 	/**
 	 * @param name
-	 * @return lista de niños en concreto de la BBDD con el nombre pasado por
-	 *         parámetro
+	 * @return lista de niï¿½os en concreto de la BBDD con el nombre pasado por
+	 *         parametro
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Get a kid by name", notes = "Returns a kid as per the name")
     @ApiResponses(value = {
@@ -78,7 +78,7 @@ public class KidController {
 				return new ResponseEntity<List<Kid>>(all, new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-						"El niño con nombre: " + name + "no se ha encontrado", e);
+						"El nino con nombre: " + name + "no se ha encontrado", e);
 			}
 		} else {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
@@ -88,11 +88,11 @@ public class KidController {
 
 	/**
 	 * @param id
-	 * @return un niño en concreto de la BBDD con el id pasado por parámetro
+	 * @return un nino en concreto de la BBDD con el id pasado por parametro
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Get a kid by id", notes = "Returns a kid as per the id")
     @ApiResponses(value = {
@@ -109,7 +109,7 @@ public class KidController {
 				Kid kid = service.getKidById(id);
 				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El niño con id: " + id + "no se ha encontrado",
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El nino con id: " + id + "no se ha encontrado",
 						e);
 			}
 		} else {
@@ -120,12 +120,12 @@ public class KidController {
 
 	/**
 	 * @param n
-	 * @return EndPoint que nos devuelve un HttpStatus.OK y un nuevo niño creado en
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y un nuevo nino creado en
 	 *         la BBDD
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Create a new kid", notes = "Returns a new kid")
     @ApiResponses(value = {
@@ -141,7 +141,7 @@ public class KidController {
 				Kid kid = service.createKid(n);
 				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El niño no ha sido guardado correctamente", e);
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El nino no ha sido guardado correctamente", e);
 			}
 		} else {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La peticion no se ha realizado correctamente");
@@ -150,11 +150,11 @@ public class KidController {
 
 	/**
 	 * @param n
-	 * @return EndPoint que nos devuelve un HttpStatus.OK y un niño actualizado en
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y un nino actualizado en
 	 *         la BBDD
 	 * @throws ResponseStatusException (nos devolveria unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Update a kid", notes = "Returns a updated kid")
     @ApiResponses(value = {
@@ -170,7 +170,7 @@ public class KidController {
 				Kid kid = service.Update(n);
 				return new ResponseEntity<Kid>(kid, new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El niño no ha sido actualizado correctamente",
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El nino no ha sido actualizado correctamente",
 						e);
 			}
 		} else {
@@ -181,12 +181,12 @@ public class KidController {
 
 	/**
 	 * @param id
-	 * @return EndPoint que nos devuelve un HttpStatus.OK y un niño eliminado en la
+	 * @return EndPoint que nos devuelve un HttpStatus.OK y un nino eliminado en la
 	 *         BBDD
 	 * @throws ResponseStatusException (En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Delete a kid", notes = "Delete a kid")
     @ApiResponses(value = {
@@ -203,7 +203,7 @@ public class KidController {
 				return HttpStatus.OK;
 			} catch (ResponseStatusException e) {
 
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El niño no ha sido eliminado correctamente",
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El niï¿½o no ha sido eliminado correctamente",
 						e);
 			}
 		} else {

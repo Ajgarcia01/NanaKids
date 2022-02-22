@@ -9,15 +9,15 @@ import com.app.ApiRestFul.model.Kid;
 
 
 /*
- * @author=Jesús García Luque 
+ * @author=Jesus Garcia Luque 
  */
 
 
 @Repository
 public interface KidRepository extends JpaRepository<Kid,Long>{
-	//aquí van las consultas
+	//aqui van las consultas
 	
-	//Consulta para buscar a los niños por el nombre (filtro de búsqueda)
+	//Consulta para buscar a los ninos por el nombre (filtro de busqueda)
 	@Query(value = "SELECT * FROM KID AS a WHERE a.name LIKE %?1%",nativeQuery = true)
 	List<Kid> getByName(String title);
 

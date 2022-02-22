@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /*
- * @author=Jesús García Luque 
+ * @author=Jesus Garcia Luque 
  */
 
 @Service
@@ -26,16 +26,16 @@ public class KidService {
 
 	/**
 	 * 
-	 * @return Una lista de todos los niños de la BBDD
+	 * @return Una lista de todos los ninos de la BBDD
 	 * @throws RecordNotFoundException
 	 */
 	public List<Kid> getAllKids() throws RecordNotFoundException {
 		List<Kid> result = repository.findAll();
 		if (!result.isEmpty()) {
-			log4.info("Se han obtenido todos los niños con éxito");
+			log4.info("Se han obtenido todos los niï¿½os con ï¿½xito");
 			return result;
 		} else {
-			log4.error("ERROR: No se han encontrado niños en la base de datos");
+			log4.error("ERROR: No se han encontrado niï¿½os en la base de datos");
 			throw new RecordNotFoundException("No hay valores");
 		}
 
@@ -43,23 +43,23 @@ public class KidService {
 
 	/**
 	 * @param kid
-	 * @return Crea un niño con los parametros pasados en la BBDD
+	 * @return Crea un nino con los parametros pasados en la BBDD
 	 * @throws RecordNotFoundException,NullPointerException,IllegalArgumentException
 	 */
 	public Kid createKid(Kid kid) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (kid != null) {
 				try {
 					kid = repository.save(kid);
-					log4.info("Niño creado con éxito");
+					log4.info("Nino creado con ï¿½xito");
 					return kid;
 				} catch (IllegalArgumentException e) {
-					log4.error("Se han recibido datos incorrectos al crear niño, ERROR: " + e);
+					log4.error("Se han recibido datos incorrectos al crear niï¿½o, ERROR: " + e);
 					throw new IllegalArgumentException(
 							"Los valores introducidos no son correctos" + "IllegalArgumentException: " + e);
 				}
 
 		} else {
-			log4.error("ERROR: Hay datos que son nulos al crear niño");
+			log4.error("ERROR: Hay datos que son nulos al crear niï¿½o");
 			throw new NullPointerException("Valor nulo");
 		}
 
@@ -67,7 +67,7 @@ public class KidService {
 
 	/**
 	 * @param kid
-	 * @return un niño que ya existe actualizado con nuevos valores
+	 * @return un nino que ya existe actualizado con nuevos valores
 	 * @throws RecordNotFoundException, NullPointerException,
 	 *                                  IllegalArgumentException
 	 */
@@ -76,7 +76,7 @@ public class KidService {
 			try {
 				Optional<Kid> n = repository.findById(kid.getId());// si hay algo lo busca por id en la bbdd
 				if (n.isPresent()) { // UPDATE
-					Kid newKid = n.get(); // se trae el niño que hemos metido para setear los campos
+					Kid newKid = n.get(); // se trae el nino que hemos metido para setear los campos
 					newKid.setId(kid.getId());
 					newKid.setBirthDate(kid.getBirthDate());
 					newKid.setGender(kid.isGender());
@@ -84,28 +84,28 @@ public class KidService {
 					newKid.setClient(kid.getClient());
 					newKid.setFelicitations(kid.getFelicitations());
 					newKid = repository.save(newKid);
-					log4.info("INFO: El niño con nombre: " + kid.getName() + ", ha sido actualizado al nombre: "
+					log4.info("INFO: El niï¿½o con nombre: " + kid.getName() + ", ha sido actualizado al nombre: "
 							+ newKid.getName());
 					return newKid;
 
 				} else {
-					log4.error("ERROR: Se han recibido datos incorrectos al crear niño");
+					log4.error("ERROR: Se han recibido datos incorrectos al crear nino");
 					throw new IllegalArgumentException("Los valores introducidos no son correctos");
 				}
 			} catch (Exception e) {
-				log4.error("ERROR: valores mal introducidos al actulizar un niño");
+				log4.error("ERROR: valores mal introducidos al actulizar un nino");
 				throw new RecordNotFoundException("Los valores introducidos no son correctos");
 			}
 
 		} else {
-			log4.error("ERROR: Hay datos que son nulos al crear niño");
+			log4.error("ERROR: Hay datos que son nulos al crear nino");
 			throw new NullPointerException("Valor nulo");
 		}
 	}
 
 	/**
 	 * @param id
-	 * @return borra a un niño en concreto con el id pasado por parametro de la BBDD
+	 * @return borra a un nino en concreto con el id pasado por parametro de la BBDD
 	 * @throws RecordNotFoundException, IllegalArgumentException,
 	 *                                  NullPointerException
 	 */
@@ -114,7 +114,7 @@ public class KidService {
 			try {
 				Optional<Kid> kid = repository.findById(id);
 				if (kid.isPresent()) {
-					log4.info("INFO: Niño eliminado con id: " + id);
+					log4.info("INFO: Nino eliminado con id: " + id);
 					repository.deleteById(id);
 
 				}
@@ -131,7 +131,7 @@ public class KidService {
 
 	/**
 	 * @param id
-	 * @return un niño en concreto de la BBDD con el id pasado por parámetro
+	 * @return un nino en concreto de la BBDD con el id pasado por parametro
 	 * @throws RecordNotFoundException, NullPointerException,
 	 *                                  IllegalArgumentException
 	 */
@@ -140,26 +140,26 @@ public class KidService {
 			try {
 				Optional<Kid> result = repository.findById(id);
 				if (result.isPresent()) {
-					log4.info("INFO: Niño con id " + id + " ha sido encontrado en la base de datos");
+					log4.info("INFO: Nino con id " + id + " ha sido encontrado en la base de datos");
 					return result.get();
 				} else {
-					log4.info("ERROR: No hay resultados en obtener un niño para el id: " + id);
+					log4.info("ERROR: No hay resultados en obtener un nino para el id: " + id);
 					throw new RecordNotFoundException("No se han encontrado valores para el id: ", id);
 				}
 			} catch (IllegalArgumentException e) {
-				log4.info("ERROR: Los datos introducidos para encontrar un niño por id no son correctos");
+				log4.info("ERROR: Los datos introducidos para encontrar un nino por id no son correctos");
 				throw new IllegalArgumentException(
 						"Los valores introducidos no son correctos" + "IllegalArgumentException: " + e);
 			}
 		} else {
-			log4.info("ERROR: Los datos introducidos para encontrar un niño por id son nulos");
+			log4.info("ERROR: Los datos introducidos para encontrar un nino por id son nulos");
 			throw new NullPointerException("Valor nulo");
 		}
 	}
 
 	/**
 	 * @param title
-	 * @return un niño en concreto de la BBDD con el nombre pasado por parámetro
+	 * @return un nino en concreto de la BBDD con el nombre pasado por parametro
 	 * @throws RecordNotFoundException, NullPointerException,
 	 *                                  IllegalArgumentException
 	 */
@@ -170,20 +170,20 @@ public class KidService {
 				List<Kid> list = repository.getByName(title);
 
 				if (list.size() > 0) {
-					log4.info("INFO: La búsqueda de niños encontrados por nombre ha sido realizada");
+					log4.info("INFO: La busqueda de ninos encontrados por nombre ha sido realizada");
 					return list;
 				} else {
-					log4.info("ERROR: No hay resultados en obtener un niño para el nombre: " + title);
+					log4.info("ERROR: No hay resultados en obtener un nino para el nombre: " + title);
 					throw new RecordNotFoundException("No hay resultados", title);
 				}
 
 			} catch (IllegalArgumentException e) {
-				log4.info("ERROR: Los datos introducidos para encontrar un niño por nombre no son correctos");
+				log4.info("ERROR: Los datos introducidos para encontrar un nino por nombre no son correctos");
 				throw new IllegalArgumentException(
 						"Los valores introducidos no son correctos" + "IllegalArgumentException: " + e);
 			}
 		} else {
-			log4.info("ERROR: Los datos introducidos para encontrar un niño por nombre son nulos");
+			log4.info("ERROR: Los datos introducidos para encontrar un nino por nombre son nulos");
 			throw new NullPointerException();
 		}
 	}

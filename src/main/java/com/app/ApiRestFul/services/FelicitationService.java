@@ -33,14 +33,14 @@ public class FelicitationService {
 	 * @return Devuelve una lista de todas las felicitaciones de la base de datos
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	public List<Felicitation> getAllFelicitations() {
 		
 		List<Felicitation> result = repository.findAll();
 		
 		if (!result.isEmpty()) {
-			log4.info("Se han obtenido todas las Felicitaciones con éxito");
+			log4.info("Se han obtenido todas las Felicitaciones con ï¿½xito");
 			return result;
 		} else {
 			log4.error("ERROR: No se han encontrado Felicitaciones en la base de datos");
@@ -56,7 +56,7 @@ public class FelicitationService {
 	 * @return Devuelve una felicitacion de la base de datos por un ID
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	public Felicitation getFelicitationById(Long id) throws RecordNotFoundException {
 		
@@ -86,11 +86,11 @@ public class FelicitationService {
 	/**
 	 * -->	CREAR FELICITACION	<--	
 	 * 
-	 * @param felicitation Felicitation que vamos a añadir a la base de datos
+	 * @param felicitation Felicitation que vamos a anadir a la base de datos
 	 * @return Devuelve la felicitacion
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda seria nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	public Felicitation createFelicitation(Felicitation felicitation) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (felicitation != null) {
@@ -98,7 +98,7 @@ public class FelicitationService {
 				try {
 					felicitation = repository.createFelicitation(felicitation.getType(), 
 							felicitation.getImage(), felicitation.getKid().getId(),felicitation.getKid().getBirthDate());
-					log4.info("Felicitacion creada con éxito");
+					log4.info("Felicitacion creada con ï¿½xito");
 					return felicitation;
 				} catch (IllegalArgumentException e) {
 					log4.error("Se han recibido datos incorrectos al crear la Felicitaciones, ERROR: " + e);
@@ -122,7 +122,7 @@ public class FelicitationService {
 	 * @return Devuelve la felicitacion
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	public Felicitation UpdateFelicitation(Felicitation felicitation) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (felicitation != null) {
@@ -172,7 +172,7 @@ public class FelicitationService {
 		
 			if(listFelicitation != null) {
 				
-				log4.info("Se han obtenido todas las Felicitaciones de tipo: "+TypeFelicitation+ " con éxito");
+				log4.info("Se han obtenido todas las Felicitaciones de tipo: "+TypeFelicitation+ " con ï¿½xito");
 				return listFelicitation;
 			}else {
 				
@@ -199,7 +199,7 @@ public class FelicitationService {
 
 		if(listFelicitation != null) {
 			
-			log4.info("Se han obtenido todas las Felicitaciones de tipo: "+type+ " y fecha  "+now+" con éxito");
+			log4.info("Se han obtenido todas las Felicitaciones de tipo: "+type+ " y fecha  "+now+" con ï¿½xito");
 			return listFelicitation;
 		}else {
 			log4.error("ERROR: No se han encontrado Felicitaciones de tipo: "+type+" y fecha  "+now+" en la base de datos");
@@ -259,7 +259,7 @@ public class FelicitationService {
 	 * 
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	
 	public void changeToSent(int type , LocalDate now) {
@@ -281,7 +281,7 @@ public class FelicitationService {
 	 * 
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	
 	public void changeToUnsent(int type , LocalDate now) {
@@ -301,7 +301,7 @@ public class FelicitationService {
 	 * @param id Identificador del administrador
 	 * 
 	 *           En caso de error nos devolveria un NullPointerException, ya que no
-	 *           hay nada, la búsqueda sería nula
+	 *           hay nada, la busqueda seria nula
 	 */
 	
 	public void deleteFelicitationById(Long id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {

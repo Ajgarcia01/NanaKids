@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.app.ApiRestFul.model.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin,String>{
-	//aquí van las consultas
+	//aqui van las consultas
 }

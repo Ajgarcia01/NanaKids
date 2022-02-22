@@ -37,7 +37,7 @@ public class AdminController {
 
 	/**
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los administradores que
-	 *         existan en la BBDD a través del servicio
+	 *         existan en la BBDD a traves del servicio
 	 */
     @ApiOperation(value = "Get all admin", notes = "Returns an admin list")
     @ApiResponses(value = {
@@ -55,11 +55,11 @@ public class AdminController {
 	/**
 	 * @param id
 	 * @return administrador en concreto de la BBDD con el id pasado por
-	 *         parámetro
+	 *         parametro
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Get a admin by id", notes = "Returns a admin as per the id")
     @ApiResponses(value = {
@@ -91,8 +91,8 @@ public class AdminController {
 	 *         la BBDD
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Create a admin", notes = "Returns a new  admin")
     @ApiResponses(value = {
@@ -121,8 +121,8 @@ public class AdminController {
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y un administrador actualizado en
 	 *         la BBDD
 	 * @throws ResponseStatusException (nos devolveria unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Update a admin", notes = "Returns a admin updated")
     @ApiResponses(value = {
@@ -154,8 +154,8 @@ public class AdminController {
 	 *         BBDD
 	 * @throws ResponseStatusException (En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
-	 *                                 HttpStatus.BAD_REQUEST, en función de la
-	 *                                 petición)
+	 *                                 HttpStatus.BAD_REQUEST, en funcion de la
+	 *                                 peticion)
 	 */
     @ApiOperation(value = "Delete a admin", notes = "Returns a admin deleted")
     @ApiResponses(value = {
