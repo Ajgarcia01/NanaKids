@@ -7,5 +7,5 @@ import com.app.ApiRestFul.model.Client;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client,String>{
-	//aquí van las consultas
+	//aqui van las consultas
 }
