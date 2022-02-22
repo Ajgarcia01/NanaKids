@@ -32,7 +32,7 @@ public class WhatsAppController {
 	
 	/**
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y todos los niños que
-	 *         existan en la BBDD a través del servicio
+	 *         existan en la BBDD a traves del servicio
 	 */
     @ApiOperation(value = "Send Message on Api WhatsApp by Twilio", notes = "Returns a send message on whatsapp")
     @ApiResponses(value = {
