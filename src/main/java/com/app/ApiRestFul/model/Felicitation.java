@@ -1,6 +1,5 @@
 package com.app.ApiRestFul.model;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -23,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "felicitation")
 public class Felicitation implements Serializable {
-	@Serial
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

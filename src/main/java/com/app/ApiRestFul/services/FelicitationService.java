@@ -90,7 +90,7 @@ public class FelicitationService {
 	 * @return Devuelve la felicitacion
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la búsqueda seria nula
 	 */
 	public Felicitation createFelicitation(Felicitation felicitation) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (felicitation != null) {

@@ -29,7 +29,7 @@ public class ClientService {
 	 * Devuelve una lista de todos los clientes que se encuentran en la BBDD
 	 * 
 	 * En caso de error nos devolveria un NullPointerException, ya que no hay nada,
-	 * la b�squeda ser�a nula
+	 * la busqueda sera nula
 	 * 
 	 */
 	public List<Client> getAllClient() throws NullPointerException {
@@ -49,7 +49,7 @@ public class ClientService {
 	 * Devuelve un cliente por un id de la BBDD
 	 * 
 	 * En caso de error nos devolveria un NullPointerException, ya que no hay nada,
-	 * la b�squeda ser�a nula
+	 * la busqueda seria nula
 	 * 
 	 */
 	public Client getClientById(String id)
@@ -78,10 +78,10 @@ public class ClientService {
 	 * Guardamos un cliente en la base de datos
 	 * 
 	 * @param cliente Recibe un cliente que es el que guarda en la BBDD
-	 * @return devuelve el cliente que hemos a�adido
+	 * @return devuelve el cliente que hemos anadido
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la b�squeda ser�a nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	public Client createClient(Client cliente)
 			throws NullPointerException, IllegalArgumentException, RecordNotFoundException {
@@ -108,7 +108,7 @@ public class ClientService {
 	 * @return Devuelve el nuevo cliente
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la b�squeda ser�a nula
+	 *         hay nada, la busqueda seria nula
 	 */
 	public Client UpdateClient(Client entity) {
 		if (entity.getId() != null) {
@@ -144,12 +144,12 @@ public class ClientService {
 	}
 
 	/**
-	 * Borra de a base de datos por el id de un cliente
+	 * Borra de la base de datos por el id de un cliente
 	 * 
 	 * @param id Identificador de cliente
 	 * 
 	 *           En caso de error nos devolveria un NullPointerException, ya que no
-	 *           hay nada, la b�squeda ser�a nula
+	 *           hay nada, la busqueda seriaa nula
 	 * 
 	 */
 	public void deleteClient(String id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {

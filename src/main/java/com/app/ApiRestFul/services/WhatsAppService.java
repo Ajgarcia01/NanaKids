@@ -23,7 +23,7 @@ public class WhatsAppService {
 	
 	/**
 	 * @param kid
-	 * @return Crea un niño con los parametros pasados en la BBDD
+	 * @return Crea un nino con los parametros pasados en la BBDD
 	 * @throws RecordNotFoundException,NullPointerException,IllegalArgumentException
 	 */
 	public Message sendMessage(Content c) throws RecordNotFoundException {

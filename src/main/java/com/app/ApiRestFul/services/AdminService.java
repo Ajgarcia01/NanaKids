@@ -32,7 +32,7 @@ public class AdminService {
 	 * @return Lista de todos los administradores
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda sera nula
 	 */
 	public List<Admin> getAllAdmin() throws RecordNotFoundException {
 		List<Admin> admin = repository.findAll();
@@ -52,7 +52,7 @@ public class AdminService {
 	 * @return Devuelve un administrador de la base de datos por un ID
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda sera nula
 	 */
 	public Admin getAdminById(String id)
 			throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
@@ -80,11 +80,11 @@ public class AdminService {
 
 	/**
 	 * 
-	 * @param admin Administrador que vamos a añadir a la base de datos
+	 * @param admin Administrador que vamos a anadir a la base de datos
 	 * @return Devuelve el administrador
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda sera nula
 	 */
 	public Admin createAdmin(Admin admin)
 			throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
@@ -110,7 +110,7 @@ public class AdminService {
 	 * @return Administrador actualizado
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
-	 *         hay nada, la búsqueda sería nula
+	 *         hay nada, la busqueda sera nula
 	 */
 	public Admin UpdateAdmin(Admin entity)
 			throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
@@ -150,7 +150,7 @@ public class AdminService {
 	 * @param id Identificador del administrador
 	 * 
 	 *           En caso de error nos devolveria un NullPointerException, ya que no
-	 *           hay nada, la búsqueda sería nula
+	 *           hay nada, la busqueda sera nula
 	 */
 	public void deleteAdmin(String id) throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
 

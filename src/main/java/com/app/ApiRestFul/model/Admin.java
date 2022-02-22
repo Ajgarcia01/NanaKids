@@ -1,6 +1,5 @@
 package com.app.ApiRestFul.model;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "admin")
 public class Admin implements Serializable{
 
-	@Serial
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
