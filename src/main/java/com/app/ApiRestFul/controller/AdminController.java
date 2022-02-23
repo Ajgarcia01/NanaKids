@@ -69,7 +69,7 @@ public class AdminController {
       @ApiResponse(code = 500, message = "Internal Error ")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Admin> getAdminById(@PathVariable("id") String id)
+    public ResponseEntity<Admin> getAdminById(@PathVariable("id") Long id)
     		 throws ResponseStatusException {
         if (id != null) {
             try {
@@ -165,7 +165,7 @@ public class AdminController {
       @ApiResponse(code = 500, message = "Internal Error ")
     })
     @DeleteMapping("/{id}")
-    public HttpStatus deleteAdminById(@PathVariable("id") String id)
+    public HttpStatus deleteAdminById(@PathVariable("id") Long id)
     		 throws ResponseStatusException {
         if (id != null) {
             try {

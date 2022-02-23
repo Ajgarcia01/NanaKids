@@ -1,6 +1,9 @@
 package com.app.ApiRestFul.model;
 
+import java.io.Serial;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,14 +15,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
+
 
 
 @Entity
 @Table(name = "admin")
 public class Admin implements Serializable{
 
-	
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -33,23 +40,39 @@ public class Admin implements Serializable{
 	private String password;
 	@Column(name = "email")
 	private String email;
-	@JsonIgnoreProperties(value = {"idadmin"}, allowSetters = true)
-	@OneToMany(mappedBy = "idadmin")
+	
+	//@JsonIgnoreProperties(value = {"idadmin"}, allowSetters = true)
+	@JsonIgnore
+	@OneToMany(mappedBy = "idadmin", cascade = CascadeType.MERGE, orphanRemoval = true)
 	private List<Client> clients;
-
+	
+	
 	public Admin() {
-
+		List<Client> clients=new ArrayList<Client>();
 	}
+	
 
-	public Admin(Long id, String user, String password, String email) {
+	public Admin(Long id, String user, String password, String email,List<Client> clientss) {
 		this.user = user;
 		this.password = password;
 		this.email = email;
+		this.clients=clientss;
 	}
 
 	public String getUser() {
 		return user;
 	}
+	
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 
 	public void setUser(String user) {
 		this.user = user;

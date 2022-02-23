@@ -54,7 +54,7 @@ public class AdminService {
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
 	 *         hay nada, la busqueda sera nula
 	 */
-	public Admin getAdminById(String id)
+	public Admin getAdminById(Long id)
 			throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
 		if (id != null) {
 			try {
@@ -116,7 +116,7 @@ public class AdminService {
 			throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
 		if (entity.getUser() != null) {
 			try {
-				Optional<Admin> admin = repository.findById(entity.getUser());
+				Optional<Admin> admin = repository.findById(entity.getId());
 
 				if (admin.isPresent()) {
 					Admin newAdmin = admin.get();
@@ -152,7 +152,7 @@ public class AdminService {
 	 *           En caso de error nos devolveria un NullPointerException, ya que no
 	 *           hay nada, la busqueda sera nula
 	 */
-	public void deleteAdmin(String id) throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
+	public void deleteAdmin(Long id) throws RecordNotFoundException, IllegalArgumentException, NullPointerException {
 
 		if (id != null) {
 			try {

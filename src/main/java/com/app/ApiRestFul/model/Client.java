@@ -1,5 +1,7 @@
 package com.app.ApiRestFul.model;
 
+import java.io.Serial;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,12 +16,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "client")
 public class Client implements Serializable {
-	
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -39,16 +42,19 @@ public class Client implements Serializable {
 	private String Phone;
 	@Column(name = "Email")
 	private String Email;
+	
 	@JsonIgnoreProperties(value = { "client" }, allowSetters = true)
 	@ManyToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Kid> kid;
 	
-	@JsonIgnoreProperties(value = { "clients" }, allowSetters = true)
 	@JoinColumn(name = "user_admin")
+	@JsonIgnoreProperties(value = { "clients" }, allowSetters = true)
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Admin idadmin;
 
-
+	public Client() {
+		
+	}
 
 	public Client(Long id, String dni, boolean type, String name, String surname, String phone, String email,
 			List<Kid> kid, Admin idadmin) {
@@ -63,11 +69,21 @@ public class Client implements Serializable {
 		this.idadmin = idadmin;
 	}
 
-	public String getId() {
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDni() {
 		return dni;
 	}
 
-	public void setId(String dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 

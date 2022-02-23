@@ -52,7 +52,7 @@ public class ClientService {
 	 * la busqueda seria nula
 	 * 
 	 */
-	public Client getClientById(String id)
+	public Client getClientById(Long id)
 			throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (id != null) {
 			try {
@@ -152,7 +152,7 @@ public class ClientService {
 	 *           hay nada, la busqueda seriaa nula
 	 * 
 	 */
-	public void deleteClient(String id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
+	public void deleteClient(Long id) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (id != null) {
 			try {
 				Optional<Client> cliente = repository.findById(id);

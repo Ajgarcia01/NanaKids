@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.app.ApiRestFul.model.Client;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client,String>{
+public interface ClientRepository extends JpaRepository<Client,Long>{
 	//aqui van las consultas
 }

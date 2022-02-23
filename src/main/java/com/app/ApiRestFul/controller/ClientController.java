@@ -75,7 +75,7 @@ public class ClientController {
       @ApiResponse(code = 500, message = "Internal Error ")
     })
 	@GetMapping("/{id}")
-	public ResponseEntity<Client> getClientById(@PathVariable("id") String id)
+	public ResponseEntity<Client> getClientById(@PathVariable("id") Long id)
 			throws RecordNotFoundException, ResponseStatusException {
 
 		if (id != null) {
@@ -175,7 +175,7 @@ public class ClientController {
       @ApiResponse(code = 500, message = "Internal Error ")
     })
 	@DeleteMapping("/{id}")
-	public HttpStatus deleteClientById(@PathVariable("id") String id)
+	public HttpStatus deleteClientById(@PathVariable("id") Long id)
 			throws RecordNotFoundException, ResponseStatusException {
 
 		if (id != null) {
