@@ -86,15 +86,18 @@ public class FelicitationService {
 	/**
 	 * -->	CREAR FELICITACION	<--	
 	 * 
-	 * @param felicitation Felicitation que vamos a anadir a la base de datos
+	 * @param felicitation Felicitation que vamos a anadir a la base de datos , fotoNube String corresponde a la url de la 
+	 * foto guardada en cloudinary
+	 * 
 	 * @return Devuelve la felicitacion
 	 * 
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
 	 *         hay nada, la busqueda seria nula
 	 */
-	public Felicitation createFelicitation(Felicitation felicitation) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
+	public Felicitation createFelicitation(Felicitation felicitation , String fotoNube ) throws RecordNotFoundException, NullPointerException, IllegalArgumentException {
 		if (felicitation != null) {
-		
+				
+				felicitation.setImage(fotoNube);
 				try {
 					felicitation = repository.createFelicitation(felicitation.getType(), 
 							felicitation.getImage(), felicitation.getKid().getId(),felicitation.getKid().getBirthDate());

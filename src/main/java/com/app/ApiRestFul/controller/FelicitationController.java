@@ -238,7 +238,7 @@ public class FelicitationController {
 	/**
 	 * --> AÑADIR FELICITACION	<--
 	 * 
-	 * @param f Felicitacion
+	 * @param f Felicitacion , fotoNube String corresponde a la url de la foto guardada en cloudinary
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y una nueva felicitacion creado en
 	 *         la BBDD
 	 * 
@@ -255,10 +255,10 @@ public class FelicitationController {
       @ApiResponse(code = 500, message = "Internal Error ")
     })
 	@PostMapping
-	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f) throws ResponseStatusException {
+	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f , String fotoNube) throws ResponseStatusException {
 		if (f != null) {
 			try {
-				Felicitation felicitation = service.createFelicitation(f);
+				Felicitation felicitation = service.createFelicitation(f , fotoNube);
 				return new ResponseEntity<Felicitation>(felicitation, new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La felicitacion no ha sido guardada correctamente", e);
