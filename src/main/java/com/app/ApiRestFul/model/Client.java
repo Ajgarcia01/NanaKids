@@ -44,12 +44,12 @@ public class Client implements Serializable {
 	private String Email;
 	
 	@JsonIgnoreProperties(value = { "client" }, allowSetters = true)
-	@ManyToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "client", cascade = CascadeType.MERGE)
 	private List<Kid> kid;
 	
 	@JoinColumn(name = "user_admin")
 	@JsonIgnoreProperties(value = { "clients" }, allowSetters = true)
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Admin idadmin;
 
 	public Client() {

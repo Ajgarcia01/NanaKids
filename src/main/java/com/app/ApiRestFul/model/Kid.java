@@ -1,5 +1,6 @@
 package com.app.ApiRestFul.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "kid")
 public class Kid implements Serializable {
-	
+	@Serial
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +40,7 @@ public class Kid implements Serializable {
 	private boolean Gender;
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
 	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name = "id_kid"), inverseJoinColumns = @JoinColumn(name = "id_client"))
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.MERGE })
 	private List<Client> client; // serian los padres
 	
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
@@ -50,11 +51,12 @@ public class Kid implements Serializable {
 
 	}
 
-	public Kid(Long id, String name, LocalDate birthDate, boolean gender, List<Felicitation> felicitations) {
+	public Kid(Long id, String name, LocalDate birthDate, boolean gender, List<Client> client, List<Felicitation> felicitations) {
 		this.id = id;
 		this.Name = name;
 		this.BirthDate = birthDate;
 		this.Gender = gender;
+		this.client=client;
 		this.felicitations = felicitations;
 	}
 

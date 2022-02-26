@@ -122,6 +122,7 @@ public class ClientService {
 					newClient.setPhone(entity.getPhone());
 					newClient.setSurname(entity.getSurname());
 					newClient.setType(entity.isType());
+					newClient.setKid(entity.getKid());
 					newClient = repository.save(newClient);
 					log4.info("Se ha actualizado el cliente correctamente");
 					return newClient;
