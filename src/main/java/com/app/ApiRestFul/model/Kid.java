@@ -4,6 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -51,13 +52,13 @@ public class Kid implements Serializable {
 
 	}
 
-	public Kid(Long id, String name, LocalDate birthDate, boolean gender, List<Client> client, List<Felicitation> felicitations) {
+	public Kid(Long id, String name, LocalDate birthDate, boolean gender) {
 		this.id = id;
 		this.Name = name;
 		this.BirthDate = birthDate;
 		this.Gender = gender;
-		this.client=client;
-		this.felicitations = felicitations;
+		this.client=new ArrayList<Client>();
+		this.felicitations = new ArrayList<Felicitation>();
 	}
 
 	public Long getId() {

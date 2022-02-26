@@ -3,6 +3,7 @@ package com.app.ApiRestFul.model;
 import java.io.Serial;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -56,8 +57,7 @@ public class Client implements Serializable {
 		
 	}
 
-	public Client(Long id, String dni, boolean type, String name, String surname, String phone, String email,
-			List<Kid> kid, Admin idadmin) {
+	public Client(Long id, String dni, boolean type, String name, String surname, String phone, String email, Admin idadmin) {
 		this.id = id;
 		this.dni = dni;
 		this.type = type;
@@ -65,7 +65,7 @@ public class Client implements Serializable {
 		Surname = surname;
 		Phone = phone;
 		Email = email;
-		this.kid = kid;
+		this.kid = new ArrayList<Kid>();
 		this.idadmin = idadmin;
 	}
 
