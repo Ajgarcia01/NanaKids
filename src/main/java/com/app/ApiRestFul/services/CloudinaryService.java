@@ -28,9 +28,9 @@ public class CloudinaryService {
 		String result = "";
 		
 		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-				"cloud_name", "dwii1uni1",
-				"api_key", "649225319851586",
-				"api_secret", "SNtki9AshafYJNPAa6t8L1-cKPQ",
+				"cloud_name", "dcbl6rgf5",
+				"api_key", "996128877648275",
+				"api_secret", "-f1WFF0cg7ukbi1Dp7n8QEKbGOU",
 				"secure", true));
 		
 		File file = new File(foto);
