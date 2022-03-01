@@ -50,7 +50,7 @@ public class Client implements Serializable {
 	
 	@JoinColumn(name = "user_admin")
 	@JsonIgnoreProperties(value = { "clients" }, allowSetters = true)
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne(cascade =  CascadeType.MERGE)
 	private Admin idadmin;
 
 	public Client() {
