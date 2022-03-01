@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -63,6 +64,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping
 	public ResponseEntity<List<Felicitation>> getAllFelicitations() {
 		try {
@@ -86,6 +88,7 @@ public class FelicitationController {
 	 *                                 HttpStatus.BAD_REQUEST, en función de la
 	 *                                 petición)
 	 */
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping("/{id}")
 	public ResponseEntity<Felicitation> getItemById(@PathVariable("id") Long id) throws RecordNotFoundException {
 		if (id != null && id > -1) {
@@ -124,6 +127,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping("/search/{type}")
 	public ResponseEntity<List<Felicitation>> getListByType( @PathVariable("type")int type){
 		try {
@@ -155,6 +159,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping("/search/date-type/{type}")
 	public ResponseEntity<List<Felicitation>> getlistFelicitationByDateAndType(@PathVariable("type")int type ){
 		try {
@@ -184,6 +189,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping("/count")
 	public ResponseEntity<Long> getCount(){
 		try {
@@ -215,6 +221,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping("/count/date-type/{type}")
 	public ResponseEntity<Long> getCountFelicitationByDateAndType(@PathVariable("type")int type){
 		try {
@@ -254,6 +261,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PostMapping
 	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f , String fotoNube) throws ResponseStatusException {
 		if (f != null) {
@@ -294,6 +302,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PutMapping
 	public ResponseEntity<Felicitation> UpdateFelicitation(@RequestBody Felicitation f) throws ResponseStatusException {
 		if (f != null && f.getId() > 0) {
@@ -326,6 +335,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PutMapping("/change-to-sent/{type}")
 	public HttpStatus changeToSentFelicitation(@PathVariable("type")int type) throws ResponseStatusException {
 		
@@ -355,6 +365,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PutMapping("/change-to-unsent/{type}")
 	public HttpStatus changeToUnentFelicitation(@PathVariable("type")int type) throws ResponseStatusException {
 		
@@ -391,6 +402,7 @@ public class FelicitationController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteFelicitation(@PathVariable("id") Long id) throws ResponseStatusException {
 		if (id != null && id > -1) {

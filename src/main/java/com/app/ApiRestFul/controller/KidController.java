@@ -74,6 +74,7 @@ public class KidController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping("/search/{name}")
 	public ResponseEntity<List<Kid>> getKidByName(@PathVariable("name") String name) throws ResponseStatusException {
 		if (name != null) {
@@ -105,6 +106,7 @@ public class KidController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@GetMapping("/{id}")
 	public ResponseEntity<Kid> getKidById(@PathVariable("id") Long id) throws ResponseStatusException {
 
@@ -138,6 +140,7 @@ public class KidController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PostMapping
 	public ResponseEntity<Kid> createKid(@RequestBody Kid n) throws ResponseStatusException {
 		if (n != null) {
@@ -167,6 +170,7 @@ public class KidController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PutMapping
 	public ResponseEntity<Kid> UpdateKid(@RequestBody Kid n) throws ResponseStatusException {
 		if (n != null && n.getId() > 0) {
@@ -199,6 +203,7 @@ public class KidController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteKid(@PathVariable("id") Long id) throws ResponseStatusException {
 		if (id != null && id > -1) {

@@ -3,6 +3,7 @@ package com.app.ApiRestFul.controller;
 import com.app.ApiRestFul.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -16,6 +17,7 @@ import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +48,7 @@ public class AdminController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
     @GetMapping  
     public ResponseEntity<List<Admin>> getAllClient() {
         List<Admin> list = service.getAllAdmin();
@@ -68,6 +71,7 @@ public class AdminController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
     @GetMapping("/{id}")
     public ResponseEntity<Admin> getAdminById(@PathVariable("id") Long id)
     		 throws ResponseStatusException {
@@ -101,6 +105,7 @@ public class AdminController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
     @PostMapping
     public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) throws ResponseStatusException {
         if (admin != null) {
@@ -131,6 +136,7 @@ public class AdminController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
     @PutMapping
     public ResponseEntity<Admin> UpdateAdmin(@RequestBody Admin admin)
     		 throws ResponseStatusException {
@@ -164,6 +170,7 @@ public class AdminController {
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "Internal Error ")
     })
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
     @DeleteMapping("/{id}")
     public HttpStatus deleteAdminById(@PathVariable("id") Long id)
     		 throws ResponseStatusException {
