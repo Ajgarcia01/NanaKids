@@ -7,6 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.app.ApiRestFul.model.Felicitation;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
@@ -40,6 +41,7 @@ public class CloudinaryService {
 			result = (String) uploadResult.get("url");
 			System.out.println(result);
 			log4.info("Imagen subida con exito al cloudinary");
+			
 			return result;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
