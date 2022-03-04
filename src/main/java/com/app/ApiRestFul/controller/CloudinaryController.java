@@ -25,8 +25,8 @@ public class CloudinaryController {
 	//*
 	//	--->		GET			<---
 	//*
-    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
-	@GetMapping("/{urlImage}")
+  ///  @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
+	@GetMapping("/foto/{urlImage}")
 	public ResponseEntity<String> getUrlImageCloudinary(@PathVariable("urlImage") String urlImage ){
 		try {
 		String urlImageCloudinary  =  service.uploadPhoto(urlImage);

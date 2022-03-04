@@ -8,13 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.app.ApiRestFul.model.Felicitation;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+
 @Service
 public class CloudinaryService {
 	
-	private static final Logger log4 = LoggerFactory.getLogger(FelicitationService.class);
+	private static final Logger log4 = LoggerFactory.getLogger(CloudinaryService.class);
 
 	/**
 	 * -->	SUBIR LAS FOTOS A CLOUDINARY	<--	
