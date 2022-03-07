@@ -121,6 +121,7 @@ public class ClientService {
 					newClient.setName(entity.getName());
 					newClient.setPhone(entity.getPhone());
 					newClient.setSurname(entity.getSurname());
+					newClient.setDni(entity.getDni());
 					newClient.setType(entity.isType());
 					newClient.setKid(entity.getKid());
 					newClient = repository.save(newClient);
