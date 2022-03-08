@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -267,7 +268,7 @@ public class FelicitationController {
     })
     @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PostMapping
-	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f , @RequestBody File photo) throws ResponseStatusException {
+	public ResponseEntity<Felicitation> createFelicitation( @RequestPart Felicitation f , @RequestPart File photo) throws ResponseStatusException {
 		if (f != null) {
 			try {
 				f.setImage(CloudinaryService.uploadPhoto(photo));
@@ -293,7 +294,7 @@ public class FelicitationController {
 	 * 
 	 * @param f Felicitacion
 	 * @return EndPoint que nos devuelve un HttpStatus.OK y una felicitacion actualizada en
-	 *         la BBDD
+	 *         la BBDD@RequestBody
 	 * 
 	 * @throws ResponseStatusException ( En caso de error nos devolveria
 	 *                                 unHttpStatus.NOT_FOUND o
