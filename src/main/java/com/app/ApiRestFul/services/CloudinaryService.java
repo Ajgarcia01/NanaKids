@@ -1,6 +1,7 @@
 package com.app.ApiRestFul.services;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+
 
 @Service
 public class CloudinaryService {
@@ -40,7 +42,8 @@ public class CloudinaryService {
 		Map uploadResult;
 		System.out.println(foto);
 		try {
-			uploadResult = cloudinary.uploader().upload(foto, ObjectUtils.emptyMap());
+			File file=convert(foto);
+			uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
 			result = (String) uploadResult.get("url");
 			System.out.println(result);
 			log4.info("Imagen subida con exito al cloudinary");
@@ -52,9 +55,18 @@ public class CloudinaryService {
 			log4.info("Error en la subida de la imagen");
 			throw new IllegalArgumentException(
 					"Valor introducido no valido" + "IllegalArgumentException: " + e);
-		}
-		
-		
+		}	
 		
 	}
+	
+	private static File convert(MultipartFile multipartFile) throws IOException{
+		File file = new File(multipartFile.getOriginalFilename());
+		FileOutputStream fo = new FileOutputStream(file);
+		fo.write(multipartFile.getBytes());
+		fo.close();
+		return file;
+	}
+	
+	
+	
 }
