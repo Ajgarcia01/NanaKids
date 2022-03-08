@@ -40,7 +40,7 @@ public class CloudinaryService {
 		Map uploadResult;
 		System.out.println(foto);
 		try {
-			uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+			uploadResult = cloudinary.uploader().upload(foto, ObjectUtils.emptyMap());
 			result = (String) uploadResult.get("url");
 			System.out.println(result);
 			log4.info("Imagen subida con exito al cloudinary");
