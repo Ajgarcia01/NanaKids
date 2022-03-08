@@ -56,14 +56,14 @@ public class CloudinaryController {
 		
 
 	}
-	*/
+	
 
 	    //*
 	    //    --->        GET            <---
 	    //*
 	  ///  @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	    @GetMapping("/foto/{urlImage}")
-	    public ResponseEntity<String> getUrlImageCloudinary(@PathVariable("urlImage") String urlImage ){
+	    public ResponseEntity<String> getUrlImageCloudinary(@PathVariable("urlImage") File urlImage ){
 	        try {
 	        String urlImageCloudinary  =  service.uploadPhoto(urlImage);
 	        return new ResponseEntity<String>(urlImageCloudinary , new HttpHeaders() , HttpStatus.OK);
@@ -72,6 +72,6 @@ public class CloudinaryController {
 	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "LA URL DEL CLOUDINATY ES "+urlImage, e);
 	        }
 	    }
-
+*/
 	}
 

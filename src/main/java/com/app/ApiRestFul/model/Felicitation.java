@@ -1,5 +1,6 @@
 package com.app.ApiRestFul.model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 
