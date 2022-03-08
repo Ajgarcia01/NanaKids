@@ -38,7 +38,7 @@ public class CloudinaryService {
 		
 
 		Map uploadResult;
-		File f=(File) foto;
+		System.out.println(foto);
 		try {
 			uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
 			result = (String) uploadResult.get("url");
