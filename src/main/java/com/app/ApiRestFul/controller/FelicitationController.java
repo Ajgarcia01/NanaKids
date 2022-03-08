@@ -277,15 +277,7 @@ public class FelicitationController {
 	@PostMapping
 	public ResponseEntity<Felicitation> createFelicitation(  @RequestPart Felicitation f , @RequestPart MultipartFile photo) throws ResponseStatusException {
 		if (f != null) {
-			try {
-				try {
-					BufferedImage bi = ImageIO.read(photo.getInputStream());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				
+			try {								
 				f.setImage(CloudinaryService.uploadPhoto(photo));
 				Felicitation felicitation = service.createFelicitation(f);
 				return new ResponseEntity<Felicitation>(felicitation, new HttpHeaders(), HttpStatus.OK);
@@ -325,9 +317,10 @@ public class FelicitationController {
     })
     @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PutMapping
-	public ResponseEntity<Felicitation> UpdateFelicitation(@RequestBody Felicitation f ) throws ResponseStatusException {
+	public ResponseEntity<Felicitation> UpdateFelicitation(@RequestPart Felicitation f , @RequestPart MultipartFile photo) throws ResponseStatusException {
 		if (f != null && f.getId() > 0) {
 			try {
+				f.setImage(CloudinaryService.uploadPhoto(photo));
 				Felicitation felicitation = service.UpdateFelicitation(f);
 				return new ResponseEntity<Felicitation>(felicitation, new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
