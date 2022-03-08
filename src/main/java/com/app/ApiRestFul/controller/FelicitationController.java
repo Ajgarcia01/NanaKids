@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
 import com.app.ApiRestFul.model.Felicitation;
+import com.app.ApiRestFul.services.CloudinaryService;
 import com.app.ApiRestFul.services.FelicitationService;
 
 import io.swagger.annotations.ApiOperation;
@@ -41,6 +43,7 @@ public class FelicitationController {
 
 	@Autowired
 	FelicitationService service;
+	CloudinaryService serviceCloud;
 	
 	
 			//*
@@ -263,10 +266,10 @@ public class FelicitationController {
     })
     @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PostMapping
-	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f , String fotoNube) throws ResponseStatusException {
+	public ResponseEntity<Felicitation> createFelicitation(@RequestBody Felicitation f , MultipartFile photo) throws ResponseStatusException {
 		if (f != null) {
 			try {
-				Felicitation felicitation = service.createFelicitation(f , fotoNube);
+				Felicitation felicitation = service.createFelicitation(f);
 				return new ResponseEntity<Felicitation>(felicitation, new HttpHeaders(), HttpStatus.OK);
 			} catch (ResponseStatusException e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La felicitacion no ha sido guardada correctamente", e);
@@ -304,7 +307,7 @@ public class FelicitationController {
     })
     @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 	@PutMapping
-	public ResponseEntity<Felicitation> UpdateFelicitation(@RequestBody Felicitation f) throws ResponseStatusException {
+	public ResponseEntity<Felicitation> UpdateFelicitation(@RequestBody Felicitation f ) throws ResponseStatusException {
 		if (f != null && f.getId() > 0) {
 			try {
 				Felicitation felicitation = service.UpdateFelicitation(f);
