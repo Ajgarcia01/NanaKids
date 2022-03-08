@@ -7,6 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -25,7 +26,7 @@ public class CloudinaryService {
 	 *         En caso de error nos devolveria un NullPointerException, ya que no
 	 *         hay nada, la busqueda seria nula
 	 */
-	public static String uploadPhoto(File foto) {
+	public static String uploadPhoto(MultipartFile foto) {
 		
 		String result = "";
 		

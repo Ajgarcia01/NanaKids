@@ -5,10 +5,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -267,8 +271,9 @@ public class FelicitationController {
       @ApiResponse(code = 500, message = "Internal Error ")
     })
     @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
+    @RequestMapping(path = "", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	@PostMapping
-	public ResponseEntity<Felicitation> createFelicitation( @RequestPart Felicitation f , @RequestPart File photo) throws ResponseStatusException {
+	public ResponseEntity<Felicitation> createFelicitation( @Validated @RequestPart Felicitation f , @RequestPart File photo) throws ResponseStatusException {
 		if (f != null) {
 			try {
 				f.setImage(CloudinaryService.uploadPhoto(photo));
