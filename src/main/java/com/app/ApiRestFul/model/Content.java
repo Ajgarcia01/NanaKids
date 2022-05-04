@@ -1,18 +1,19 @@
 package com.app.ApiRestFul.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Content implements Serializable{
 	String message;
 	String urlImage;
-	Client client;
+	Client client[];
 	Felicitation felicitation;
 	
 	public Content() {
 		
 	}
 
-	public Content(String message, String urlImage,Client c,Felicitation felicitation) {
+	public Content(String message, String urlImage,Client[] c,Felicitation felicitation) {
 		this.message = message;
 		this.urlImage = urlImage;
 		this.client=c;
@@ -37,11 +38,11 @@ public class Content implements Serializable{
 	
 	
 
-	public Client getClient() {
+	public Client[] getClient() {
 		return client;
 	}
 
-	public void setClient(Client c) {
+	public void setClient(Client[] c) {
 		this.client = c;
 	}
 	
@@ -57,6 +58,9 @@ public class Content implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Content [message=" + message + ", urlImage=" + urlImage + ", telefono=" + "]";
+		return "Content [message=" + message + ", urlImage=" + urlImage + ", client=" + Arrays.toString(client)
+				+ ", felicitation=" + felicitation + "]";
 	}
+
+	
 }
