@@ -1,6 +1,8 @@
 package com.app.ApiRestFul.model;
 
-public class Content {
+import java.io.Serializable;
+
+public class Content implements Serializable{
 	String message;
 	String urlImage;
 	Client client;
