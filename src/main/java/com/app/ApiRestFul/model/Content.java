@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Content implements Serializable{
 	String message;
 	String urlImage;
-	Client client[];
+	Client[] client;
 	Felicitation felicitation;
 	
 	public Content() {
