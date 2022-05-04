@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.app.ApiRestFul.exceptions.RecordNotFoundException;
+import com.app.ApiRestFul.model.Client;
 import com.app.ApiRestFul.model.Content;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -30,11 +31,18 @@ public class WhatsAppService {
 		Message message = null;
 		
 		try {
-			 message = Message.creator(
-		                new PhoneNumber("whatsapp:"+c.getClient().getPhone()), //to
-		                new PhoneNumber("whatsapp:+14155238886"), //from
-		                c.getMessage()).setMediaUrl(URI.create(c.getFelicitation().getImage()))
-		            .create();
+			if(c.getClient()!=null) {
+				Client[] d=c.getClient();
+				for(int i=0;i<d.length;i++) {
+					message = Message.creator(
+			                new PhoneNumber("whatsapp:"+d[i].getPhone()), //to
+			                new PhoneNumber("whatsapp:+14155238886"), //from
+			                c.getMessage()).setMediaUrl(URI.create(c.getFelicitation().getImage()))
+			            .create();
+				}
+
+			}
+			 
 			 log4.info("EL MENSAJE HA SIDO ENVIADO"+ message.getSid());
 		} catch (NullPointerException e) {
 			log4.error("EL MENSAJE NO HA PODIDO SER ENVIADO "+e);
