@@ -34,7 +34,6 @@ public class WhatsAppService {
 			if(c.getClient()!=null) {
 				Client[] d=c.getClient();
 				for(int i=0;i<d.length;i++) {
-					System.out.println(d[i].getPhone());
 					message = Message.creator(
 							
 			                new PhoneNumber("whatsapp:"+"+34"+d[i].getPhone()), //to
