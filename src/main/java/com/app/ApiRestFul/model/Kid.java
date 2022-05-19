@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +42,7 @@ public class Kid implements Serializable {
 	private boolean Gender;
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
 	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name = "id_kid"), inverseJoinColumns = @JoinColumn(name = "id_client"))
-	@ManyToMany(cascade = { CascadeType.MERGE })
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	private List<Client> client; // serian los padres
 	
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
