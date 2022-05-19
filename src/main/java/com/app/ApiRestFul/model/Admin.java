@@ -43,7 +43,8 @@ public class Admin implements Serializable{
 	
 	//@JsonIgnoreProperties(value = {"idadmin"}, allowSetters = true)
 	@JsonIgnore
-	@OneToMany(mappedBy = "idadmin",cascade = {CascadeType.MERGE})
+	@OneToMany(mappedBy = "idadmin",cascade = { CascadeType.PERSIST, 
+            CascadeType.MERGE})
 	private List<Client> clients;
 	
 	
@@ -52,11 +53,11 @@ public class Admin implements Serializable{
 	}
 	
 
-	public Admin(Long id, String user, String password, String email,List<Client> clientss) {
+	public Admin(Long id, String user, String password, String email) {
 		this.user = user;
 		this.password = password;
 		this.email = email;
-		this.clients=clientss;
+		this.clients=new ArrayList<Client>();
 	}
 
 	public String getUser() {
