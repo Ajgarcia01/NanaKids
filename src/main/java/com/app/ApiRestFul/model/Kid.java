@@ -42,7 +42,7 @@ public class Kid implements Serializable {
 	private boolean Gender;
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
 	@JoinTable(name = "client_kid", joinColumns = @JoinColumn(name = "id_kid"), inverseJoinColumns = @JoinColumn(name = "id_client"))
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Client> client; // serian los padres
 	
 	@JsonIgnoreProperties(value = { "kid" }, allowSetters = true)
