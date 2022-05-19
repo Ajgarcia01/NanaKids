@@ -43,7 +43,7 @@ public class Admin implements Serializable{
 	
 	//@JsonIgnoreProperties(value = {"idadmin"}, allowSetters = true)
 	@JsonIgnore
-	@OneToMany(mappedBy = "idadmin")
+	@OneToMany(mappedBy = "idadmin",cascade = {CascadeType.MERGE})
 	private List<Client> clients;
 	
 	
