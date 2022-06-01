@@ -16,7 +16,7 @@ import com.twilio.type.PhoneNumber;
 @Service
 public class WhatsAppService {
 	 public static final String ACCOUNT_SID ="ACde4c01154372894d9a9d0e2234310b21";
-	 public static final String AUTH_TOKEN = "0193a43655787ac4b9ccfbc25fb95e39";
+	 public static final String AUTH_TOKEN = "c2431a802d32d1501a35baca95346a91";
 	
 	private static final Logger log4 = LoggerFactory.getLogger(WhatsAppService.class);
 	
