@@ -45,7 +45,7 @@ public class Client implements Serializable {
 	private String Email;
 	
 	@JsonIgnoreProperties(value = { "client" }, allowSetters = true)
-	@ManyToMany(mappedBy = "client", cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "client", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Kid> kid;
 	
 	@JoinColumn(name = "user_admin")
